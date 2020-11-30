@@ -38,4 +38,11 @@ public class RegistrationPeople extends PeopleDB {
 
     }
 
+    @Override
+    public void printDatabase() {
+        for(Person p: people)
+        {
+            System.out.println(p.getName());
+        }
+    }
 }

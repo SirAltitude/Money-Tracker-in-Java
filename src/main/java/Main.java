@@ -20,9 +20,10 @@ public class Main {
         TicketsDB ticketsDB = RegistrationTickets.getInstance();
         RegisterController register = new RegisterController(peopleDB, ticketsDB);
 
-        Person p_test = new Person("Tester");
+        register.addPerson("Anton");
+        register.printDatabase();
 
         //if new ticket needs to be added
-        register.addPerson(p_test);
+
     }
 }

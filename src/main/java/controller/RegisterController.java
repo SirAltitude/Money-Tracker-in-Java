@@ -21,8 +21,14 @@ public class RegisterController {
         ticketsDB.addTicket(t);
     }
 
-    public void addPerson(Person person)
+    public void addPerson(String name)
     {
-         this.peopleDB.addPerson(person);
+         this.peopleDB.addPerson(new Person(name));
+    }
+
+    public void printDatabase()
+    {
+        peopleDB.printDatabase();
     }
 }
+

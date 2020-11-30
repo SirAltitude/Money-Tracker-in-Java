@@ -16,9 +16,13 @@ public class RegisterController {
         this.ticketsDB = ticketsDB;
     }
 
-    public void addEvent(Person p, Ticket t)
+    public void addEvent(Ticket t)
     {
-        peopleDB.addPerson(p);
         ticketsDB.addTicket(t);
+    }
+
+    public void addPerson(Person person)
+    {
+         this.peopleDB.addPerson(person);
     }
 }

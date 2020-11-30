@@ -26,8 +26,6 @@ public class RegistrationPeople extends PeopleDB {
     @Override
     public void addPerson(Person p) {
         this.people.add(p);
-
-
     }
 
     @Override

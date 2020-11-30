@@ -18,12 +18,11 @@ public class Main {
     public void run() {
         PeopleDB peopleDB = RegistrationPeople.getInstance();
         TicketsDB ticketsDB = RegistrationTickets.getInstance();
-        RegisterController regPeople = new RegisterController(peopleDB, ticketsDB);
+        RegisterController register = new RegisterController(peopleDB, ticketsDB);
 
-        Person p1 = new Person("Anton", 50);
-        Ticket t1 = new Ticket(50);
+        Person p_test = new Person("Tester");
 
-        regPeople.addEvent(p1, t1);
-
+        //if new ticket needs to be added
+        register.addPerson(p_test);
     }
 }

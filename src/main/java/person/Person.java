@@ -3,13 +3,11 @@ package person;
 import java.util.HashMap;
 
 public class Person {
-    private HashMap<String, Double> map;
+    private String name;
 
-    public Person(String name, double paidAmount)
+    public Person(String name)
     {
-        this.map = new HashMap<String, Double>();
-        this.map.put(name,paidAmount);
-
+    this.name = name;
     }
 }
 // arraylist van tickets

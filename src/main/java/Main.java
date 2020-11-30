@@ -21,7 +21,8 @@ public class Main {
         RegisterController register = new RegisterController(peopleDB, ticketsDB);
 
         register.addPerson("Anton");
-        register.printDatabase();
+        register.printPeopleDatabase();
+        register.printTicketDatabase();
 
         //if new ticket needs to be added
 

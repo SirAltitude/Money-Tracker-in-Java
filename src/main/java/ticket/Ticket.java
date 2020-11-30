@@ -10,4 +10,13 @@ public class Ticket {
         this.paidAmount = paidAmount;
         this.person = person;
     }
+
+    public Person getPayer()
+    {
+        return person;
+    }
+    public double getPaidAmount()
+    {
+        return paidAmount;
+    }
 }

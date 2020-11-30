@@ -26,9 +26,14 @@ public class RegisterController {
          this.peopleDB.addPerson(new Person(name));
     }
 
-    public void printDatabase()
+    public void printPeopleDatabase()
     {
         peopleDB.printDatabase();
+    }
+
+    public void printTicketDatabase()
+    {
+        ticketsDB.printDatabase();
     }
 }
 

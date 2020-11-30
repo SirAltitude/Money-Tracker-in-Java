@@ -9,7 +9,7 @@ public class Person {
     {
     this.name = name;
     }
-    public String getName()
+    public String getName() //through this method, regController can access the name of a Person
     {
         return name;
     }

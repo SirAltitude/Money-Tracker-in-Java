@@ -33,9 +33,10 @@ public class Main {
         Person p1 = peopleDB.getPerson("Anton");
 
         // Creating and registering Tickets
-        //register.addEvent(p1,15,"Shisha");
-        Ticket restaurant = factory.makeTicket(1,p1,15);
-        register.addTicket(restaurant);
+        int restaurant = 1;
+
+        Ticket restaurantTicket = factory.makeTicket(restaurant,p1,15);
+        register.addTicket(restaurantTicket);
 
         // Output
         System.out.println("---- People on this trip ----");

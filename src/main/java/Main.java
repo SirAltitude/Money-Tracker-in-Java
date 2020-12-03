@@ -32,11 +32,20 @@ public class Main {
         register.addPerson("Anton");
         Person p1 = peopleDB.getPerson("Anton");
 
+        register.addPerson("Eli");
+        Person p2 = peopleDB.getPerson("Eli");
+
         // Creating and registering Tickets
         int restaurant = 1;
+        boolean split = true;
 
-        Ticket restaurantTicket = factory.makeTicket(restaurant,p1,15);
+        Ticket restaurantTicket = factory.makeTicket(restaurant,p1,15, split);
         register.addTicket(restaurantTicket);
+        p1.addTicket(restaurantTicket);
+
+        Ticket restaurantTicketEli = factory.makeTicket(restaurant,p2,10, split);
+        register.addTicket(restaurantTicketEli);
+        p1.addTicket(restaurantTicketEli);
 
         // Output
         System.out.println("---- People on this trip ----");
@@ -44,5 +53,8 @@ public class Main {
 
         System.out.println("\n---- Active Tickets -----");
         register.printTicketDatabase();
+
+        System.out.println("\n---- Total Bill -----");
+        register.printBill();
     }
 }

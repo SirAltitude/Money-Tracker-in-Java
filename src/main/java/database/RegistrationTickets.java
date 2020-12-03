@@ -34,7 +34,8 @@ public class RegistrationTickets extends TicketsDB {
     {
         if(tickets.size()!=0) {
             for (Ticket t : tickets) {
-                System.out.println(t.getTicketType() + ", " + t.getPaidAmount()+"eur" + " was paid by " +t.getPayer().getName());
+                System.out.println(t.getTicketType() + ", " + t.getPaidAmount()+"eur" + " was paid by " +t.getPayer().getName() + ". Even split? " + t.getSplit());
+
             }
         }else System.out.println("There are no tickets");
     }

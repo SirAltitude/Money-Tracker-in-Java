@@ -44,5 +44,8 @@ public class RegisterController {
     {
         ticketsDB.printDatabase();
     }
+    public void printBill(){
+        peopleDB.totalBill();
+    }
 }
 

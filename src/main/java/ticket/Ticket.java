@@ -5,6 +5,7 @@ import person.Person;
 public abstract class Ticket {
     protected double paidAmount;
     protected Person person;
+    protected boolean splitEvenly;
 
     public Ticket(){
         this.paidAmount = 0;
@@ -19,5 +20,9 @@ public abstract class Ticket {
         return paidAmount;
     }
     public abstract String getTicketType();
+
+    public boolean getSplit(){
+        return splitEvenly;
+    }
 
 }

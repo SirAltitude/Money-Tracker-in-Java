@@ -1,5 +1,7 @@
 package database;
 import person.Person;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class RegistrationPeople extends PeopleDB {
@@ -21,6 +23,12 @@ public class RegistrationPeople extends PeopleDB {
     }
 
     @Override
+    public ArrayList<Person> getList()
+    {
+        return this.people;
+    }
+
+    @Override
     public void addPerson(Person p) {
         this.people.add(p);
     }
@@ -32,7 +40,14 @@ public class RegistrationPeople extends PeopleDB {
 
     @Override
     public void totalBill() {
-
+        for(Person person: people)
+        {
+            if(person.getDebt()==0.0)
+            {
+                System.out.println(person.getName()+" owes nothing!");
+            }
+            else System.out.println(person.getName()+ " owes "+ person.getDebt()+ " to everyone else.");
+        }
     }
 
     @Override

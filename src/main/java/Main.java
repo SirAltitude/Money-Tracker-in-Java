@@ -8,8 +8,6 @@ import database.TicketsDB;
 import person.Person;
 import ticket.Ticket;
 
-import java.awt.geom.AffineTransform;
-
 public class Main {
     public static void main(String[] args) {
         Main main = new Main();
@@ -20,28 +18,30 @@ public class Main {
     }
 
     public void run() {
+        // Databases
         PeopleDB peopleDB = RegistrationPeople.getInstance();
         TicketsDB ticketsDB = RegistrationTickets.getInstance();
 
+        // Abstract Factory
         AFact factory = TicketMaker.getInstance();
 
+        // Registration Controller
         RegisterController register = new RegisterController(peopleDB, ticketsDB,factory);
-        //hier moet je nog Afact mee doorgeven, zodat je afact kan oproepen (public afact getaf( return this.afact))
 
-        Person p1 = factory.getPerson("Anton");
+        // Creating and registering Person
         register.addPerson("Anton");
+        Person p1 = peopleDB.getPerson("Anton");
 
-        register.addEvent(p1,15,"Shisha");
+        // Creating and registering Tickets
+        //register.addEvent(p1,15,"Shisha");
+        Ticket restaurant = factory.makeTicket(1,p1,15);
+        register.addTicket(restaurant);
 
+        // Output
         System.out.println("---- People on this trip ----");
         register.printPeopleDatabase();
 
         System.out.println("\n---- Active Tickets -----");
         register.printTicketDatabase();
-
-
-
-        //if new ticket needs to be added
-
     }
 }

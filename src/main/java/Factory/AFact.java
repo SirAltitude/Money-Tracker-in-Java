@@ -6,14 +6,18 @@ import ticket.Ticket;
 
 public abstract class AFact {
 
-    public abstract void makeTicket(); // cinematicket, bowlingticket, ...
+    public abstract Ticket makeTicket(int type, Person p, double paidAmount); // cinematicket, bowlingticket, ...
 
-    public Person getPerson(String name)
+    public Person createPerson(String name)
     {
         return new Person(name);
     }
 
-    public Ticket getTicket(Person person, double paidAmount, String eventType){
-        return new Ticket(person,paidAmount,eventType);
+//    public Ticket createTicket(Person person, double paidAmount, String eventType){
+//        return new Ticket(person,paidAmount,eventType);
+//    }
+
+    public AFact getFactory(){
+        return this;
     }
 }

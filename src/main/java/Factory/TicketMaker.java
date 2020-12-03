@@ -1,5 +1,8 @@
 package Factory;
 
+import person.Person;
+import ticket.Ticket;
+
 public class TicketMaker extends AFact{
     private static TicketMaker registrationTicketMaker_instance;
 
@@ -10,7 +13,18 @@ public class TicketMaker extends AFact{
         }
         return registrationTicketMaker_instance;
     }
-    public void makeTicket() {
 
+    @Override
+    public Ticket makeTicket(int type, Person p, double paidamount) {
+        switch(type)
+        {
+            case 1: return new Ticket_Restaurant(p,paidamount);
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+        return null;
     }
+
 }

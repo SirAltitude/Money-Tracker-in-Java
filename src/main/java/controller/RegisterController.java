@@ -19,17 +19,20 @@ public class RegisterController {
         this.factory = fact;
     }
 
-    public void addEvent(Person person, double paidAmount, String eventType)
-    {
-        Ticket t = factory.getTicket(person,paidAmount,eventType);
-        ticketsDB.addTicket(t);
-        person.addTicket(t);
-    }
+//    public void addEvent(Person person, double paidAmount, int eventType)
+//    {
+//        Ticket t = factory.makeTicket(eventType, person,paidAmount);
+//        ticketsDB.addTicket(t);
+//        person.addTicket(t);
+//    }
 
+    public void addTicket(Ticket ticket)
+    {
+        this.ticketsDB.addTicket(ticket);
+    }
     public void addPerson(String name)
     {
-        Person p = factory.getPerson(name);
-        this.peopleDB.addPerson(p);
+        this.peopleDB.addPerson(factory.createPerson(name));
     }
 
     public void printPeopleDatabase()

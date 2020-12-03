@@ -2,15 +2,12 @@ package ticket;
 
 import person.Person;
 
-public class Ticket {
-    private double paidAmount;
-    private Person person;
-    private String eventType;
+public abstract class Ticket {
+    protected double paidAmount;
+    protected Person person;
 
-    public Ticket(Person person, double paidAmount, String eventType){
-        this.paidAmount = paidAmount;
-        this.person = person;
-        this.eventType = eventType;
+    public Ticket(){
+        this.paidAmount = 0;
     }
 
     public Person getPayer()
@@ -21,8 +18,6 @@ public class Ticket {
     {
         return paidAmount;
     }
-    public String getEventType()
-    {
-        return eventType;
-    }
+    public abstract String getTicketType();
+
 }

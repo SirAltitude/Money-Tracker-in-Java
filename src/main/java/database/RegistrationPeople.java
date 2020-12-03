@@ -36,6 +36,16 @@ public class RegistrationPeople extends PeopleDB {
     }
 
     @Override
+    public Person getPerson(String name) {
+        for(Person p: people)
+        {
+            if(p.getName().equals(name))
+                return p;
+        }
+        return null;
+    }
+
+    @Override
     public void printDatabase() {
         for(Person p: people)
         {

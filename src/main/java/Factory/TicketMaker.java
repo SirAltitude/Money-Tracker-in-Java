@@ -1,6 +1,5 @@
 package Factory;
 
-
 public class TicketMaker extends AFact{
     private static TicketMaker registrationTicketMaker_instance;
 

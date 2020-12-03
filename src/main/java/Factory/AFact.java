@@ -6,7 +6,7 @@ import ticket.Ticket;
 
 public abstract class AFact {
 
-    public abstract Ticket makeTicket(); // cinematicket, bowlingticket, ...
+    public abstract void makeTicket(); // cinematicket, bowlingticket, ...
 
     public Person getPerson(String name)
     {

@@ -1,9 +1,6 @@
 package database;
-
 import person.Person;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class RegistrationPeople extends PeopleDB {
 

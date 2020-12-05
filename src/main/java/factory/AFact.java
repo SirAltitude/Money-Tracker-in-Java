@@ -1,6 +1,5 @@
-package Factory;
+package factory;
 
-import database.RegistrationPeople;
 import person.Person;
 import ticket.Ticket;
 

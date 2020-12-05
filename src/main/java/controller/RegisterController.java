@@ -1,9 +1,8 @@
 package controller;
 
-import Factory.AFact;
+import factory.AFact;
 import database.PeopleDB;
 import database.TicketsDB;
-import person.Person;
 import ticket.Ticket;
 
 public class RegisterController {

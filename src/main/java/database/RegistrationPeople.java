@@ -3,15 +3,20 @@ import person.Person;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Observer;
 
 public class RegistrationPeople extends PeopleDB {
 
     private final ArrayList<Person> people;
     private static RegistrationPeople registrationPeople_instance;
+    private List<Observer> observers;
+    private Person key;
 
     private RegistrationPeople()
     {
-        this.people = new ArrayList<Person>();
+        this.people = new ArrayList<>();
+        this.observers = new ArrayList<>();
     }
 
     public static RegistrationPeople getInstance()
@@ -31,6 +36,9 @@ public class RegistrationPeople extends PeopleDB {
     @Override
     public void addPerson(Person p) {
         this.people.add(p);
+        setChanged();
+        this.key = p;
+        this.notifyObservers();
     }
 
     @Override
@@ -65,6 +73,23 @@ public class RegistrationPeople extends PeopleDB {
         for(Person p: people)
         {
             System.out.println(p.getName());
+        }
+    }
+
+    @Override
+    public void addObserver(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void deleteObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for(Observer obs: observers) {
+            obs.update(this, key);
         }
     }
 }

@@ -1,10 +1,13 @@
-import Factory.AFact;
-import Factory.TicketMaker;
+import factory.AFact;
+import factory.TicketMaker;
 import controller.RegisterController;
 import database.PeopleDB;
 import database.RegistrationPeople;
 import database.RegistrationTickets;
 import database.TicketsDB;
+import observers.ObserverEntryPerson;
+import observers.ObserverEntryTicket;
+import observers.ObserverUpdate;
 import person.Person;
 import ticket.Ticket;
 
@@ -26,6 +29,17 @@ public class Main {
 
         // Registration Controller
         RegisterController register = new RegisterController(peopleDB, ticketsDB,factory);
+
+        // Observers
+        ObserverEntryPerson printEntryPerson = new ObserverEntryPerson();
+        ObserverEntryTicket printEntryTicket = new ObserverEntryTicket();
+        ObserverUpdate printUpdate = new ObserverUpdate();
+        peopleDB.addObserver(printEntryPerson);
+        peopleDB.addObserver(printUpdate);
+        ticketsDB.addObserver(printEntryTicket);
+        ticketsDB.addObserver(printUpdate);
+
+
 
         // Creating and registering Person
         register.addPerson("Anton");
@@ -51,16 +65,16 @@ public class Main {
         p1.addTicket(sportsTicket_Anton);
 
         // Output
-        System.out.println("---- People on this trip ----");
+        System.out.println("\n---- People on this trip ----");
         register.printPeopleDatabase();
 
         System.out.println("\n---- Active Tickets -----");
         register.printTicketDatabase();
 
-        for(Person p: peopleDB.getList()) {
-            System.out.format("\n%s has active tickets: \n", p.getName());
-            p.printTickets();
-        }
+//        for(Person p: peopleDB.getList()) {
+//            System.out.format("\n%s has active tickets: \n", p.getName());
+//            p.printTickets();
+//        }
 
         System.out.println("\n---- Total Bill -----");
         register.printBill();

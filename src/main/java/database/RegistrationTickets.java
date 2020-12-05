@@ -1,19 +1,21 @@
 package database;
-
-import person.Person;
 import ticket.Ticket;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Observer;
 
 public class RegistrationTickets extends TicketsDB {
 
     private final ArrayList<Ticket> tickets;
     private static RegistrationTickets registrationTicket_instance;
-
+    private List<Observer> observers;
+    private Ticket key;
     private RegistrationTickets()
     {
-        this.tickets = new ArrayList<Ticket>();
+        this.tickets = new ArrayList<>();
+        this.observers = new ArrayList<>();
     }
 
     public static RegistrationTickets getInstance()
@@ -27,6 +29,9 @@ public class RegistrationTickets extends TicketsDB {
     @Override
     public void addTicket(Ticket t) {
         this.tickets.add(t);
+        setChanged();
+        this.key = t;
+        this.notifyObservers();
     }
 
     @Override
@@ -38,5 +43,22 @@ public class RegistrationTickets extends TicketsDB {
 
             }
         }else System.out.println("There are no tickets");
+    }
+
+    @Override
+    public void addObserver(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void deleteObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for(Observer obs: observers) {
+            obs.update(this, key);
+        }
     }
 }

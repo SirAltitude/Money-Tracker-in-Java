@@ -3,9 +3,19 @@ package database;
 import person.Person;
 import ticket.Ticket;
 
-public abstract class TicketsDB {
+import java.util.Observable;
+import java.util.Observer;
+
+public abstract class TicketsDB extends Observable {
     public TicketsDB(){}
     public abstract void addTicket(Ticket t);
     public abstract void printDatabase();
+
+    public abstract void addObserver(Observer o);
+
+    public abstract void deleteObserver(Observer o);
+
+    public abstract void notifyObservers();
+
 }
 

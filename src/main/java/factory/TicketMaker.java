@@ -1,8 +1,7 @@
-package Factory;
+package factory;
 
 import database.PeopleDB;
 import database.RegistrationPeople;
-import database.RegistrationTickets;
 import person.Person;
 import ticket.Ticket;
 
@@ -25,11 +24,9 @@ public class TicketMaker extends AFact{
             int peopleAmount = db.getList().size();
             for(Person person: db.getList())
             {
-                if(person.getName().equals(p.getName()))
-                {
-                    //do nothing
+                if(!person.getName().equals(p.getName())) {
+                    person.addDebt(paidamount / peopleAmount);
                 }
-                else person.addDebt(paidamount / peopleAmount);
             }
         }
         switch(type)

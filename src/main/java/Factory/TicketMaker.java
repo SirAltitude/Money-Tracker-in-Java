@@ -22,24 +22,26 @@ public class TicketMaker extends AFact{
         if(split)
         {
             PeopleDB db = RegistrationPeople.getInstance();
-            int peopleAmount = db.getList().size()-1;
+            int peopleAmount = db.getList().size();
             for(Person person: db.getList())
             {
-                    if (peopleAmount == 1) {
-                        person.addDebt(paidamount/2);
-                    }
-                    else person.addDebt(paidamount / peopleAmount);
+                if(person.getName().equals(p.getName()))
+                {
+                    //do nothing
+                }
+                else person.addDebt(paidamount / peopleAmount);
             }
         }
         switch(type)
         {
             case 1:
                 return new Ticket_Restaurant(p,paidamount,split);
-
             case 2:
-                break;
+                return new Ticket_Sports(p,paidamount,split);
             case 3:
-                break;
+                return new Ticket_Cinema(p,paidamount,split);
+            case 4:
+                return new Ticket_Transport(p,paidamount,split);
         }
         return null;
     }

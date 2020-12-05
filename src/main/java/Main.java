@@ -14,8 +14,7 @@ public class Main {
         main.run();
     }
 
-    public Main() {   //Intentionally left blank
-    }
+    public Main() {}   //Intentionally left blank
 
     public void run() {
         // Databases
@@ -36,16 +35,20 @@ public class Main {
         Person p2 = peopleDB.getPerson("Eli");
 
         // Creating and registering Tickets
-        int restaurant = 1;
+        int restaurant = 1, sports = 2;
         boolean split = true;
 
-        Ticket restaurantTicket = factory.makeTicket(restaurant,p1,15, split);
+        Ticket restaurantTicket = factory.makeTicket(TicketTypeEnum.restaurant.getValue(), p1,15, split);
         register.addTicket(restaurantTicket);
         p1.addTicket(restaurantTicket);
 
-        Ticket restaurantTicketEli = factory.makeTicket(restaurant,p2,10, split);
+        Ticket restaurantTicketEli = factory.makeTicket(TicketTypeEnum.restaurant.getValue(), p2,10, split);
         register.addTicket(restaurantTicketEli);
-        p1.addTicket(restaurantTicketEli);
+        p2.addTicket(restaurantTicketEli);
+
+        Ticket sportsTicket_Anton = factory.makeTicket(TicketTypeEnum.sports.getValue(), p1,20, split);
+        register.addTicket(sportsTicket_Anton);
+        p1.addTicket(sportsTicket_Anton);
 
         // Output
         System.out.println("---- People on this trip ----");
@@ -53,6 +56,11 @@ public class Main {
 
         System.out.println("\n---- Active Tickets -----");
         register.printTicketDatabase();
+
+        for(Person p: peopleDB.getList()) {
+            System.out.format("\n%s has active tickets: \n", p.getName());
+            p.printTickets();
+        }
 
         System.out.println("\n---- Total Bill -----");
         register.printBill();

@@ -26,6 +26,12 @@ public class Person {
         tickets.add(t);
     }
 
+    public void printTickets(){
+        for(Ticket ticket: tickets)
+        {
+            System.out.println(ticket.getTicketType() + ", value: "+ticket.getPaidAmount());
+        }
+    }
     public void addDebt(double value){
         debt += value;
     }

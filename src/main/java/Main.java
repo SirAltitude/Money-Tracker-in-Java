@@ -5,11 +5,14 @@ import database.PeopleDB;
 import database.RegistrationPeople;
 import database.RegistrationTickets;
 import database.TicketsDB;
+import jframe.ViewFrame;
 import observers.ObserverEntryPerson;
 import observers.ObserverEntryTicket;
 import observers.ObserverUpdate;
 import person.Person;
 import ticket.Ticket;
+
+import javax.swing.text.View;
 
 public class Main {
     public static void main(String[] args) {
@@ -40,13 +43,16 @@ public class Main {
         ticketsDB.addObserver(printUpdate);
 
 
-
         // Creating and registering Person
         register.addPerson("Anton");
         Person p1 = peopleDB.getPerson("Anton");
 
         register.addPerson("Eli");
         Person p2 = peopleDB.getPerson("Eli");
+
+        // ViewPanel
+        ViewFrame view = new ViewFrame(register,p1);
+        view.initialize();
 
         // Creating and registering Tickets
         int restaurant = 1, sports = 2;

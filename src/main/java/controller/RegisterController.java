@@ -3,6 +3,7 @@ package controller;
 import factory.AFact;
 import database.PeopleDB;
 import database.TicketsDB;
+import person.Person;
 import ticket.Ticket;
 
 public class RegisterController {
@@ -34,6 +35,10 @@ public class RegisterController {
         this.peopleDB.addPerson(factory.createPerson(name));
     }
 
+    public void removePerson(Person person)
+    {
+        this.peopleDB.removePerson(person);
+    }
     public void printPeopleDatabase()
     {
         peopleDB.printDatabase();

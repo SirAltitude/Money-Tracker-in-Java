@@ -55,18 +55,17 @@ public class Main {
         view.initialize();
 
         // Creating and registering Tickets
-        int restaurant = 1, sports = 2;
         boolean split = true;
 
         Ticket restaurantTicket = factory.makeTicket(TicketTypeEnum.restaurant.getValue(), p1,15, split);
         register.addTicket(restaurantTicket);
         p1.addTicket(restaurantTicket);
 
-        Ticket restaurantTicketEli = factory.makeTicket(TicketTypeEnum.restaurant.getValue(), p2,10, split);
-        register.addTicket(restaurantTicketEli);
-        p2.addTicket(restaurantTicketEli);
-
-        Ticket sportsTicket_Anton = factory.makeTicket(TicketTypeEnum.sports.getValue(), p1,20, split);
+//        Ticket restaurantTicketEli = factory.makeTicket(TicketTypeEnum.restaurant.getValue(), p2,10, split);
+//        register.addTicket(restaurantTicketEli);
+//        p2.addTicket(restaurantTicketEli);
+//
+        Ticket sportsTicket_Anton = factory.makeTicket(TicketTypeEnum.sports.getValue(), p1,20, !split);
         register.addTicket(sportsTicket_Anton);
         p1.addTicket(sportsTicket_Anton);
 

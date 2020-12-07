@@ -5,6 +5,8 @@ import database.RegistrationPeople;
 import person.Person;
 import ticket.Ticket;
 
+import java.util.Scanner;
+
 public class TicketMaker extends AFact{
     private static TicketMaker registrationTicketMaker_instance;
 
@@ -18,16 +20,36 @@ public class TicketMaker extends AFact{
 
     @Override
     public Ticket makeTicket(int type, Person p, double paidamount, boolean split) {
+        PeopleDB db = RegistrationPeople.getInstance();
+        int peopleAmount = db.getList().size();
         if(split)
         {
-            PeopleDB db = RegistrationPeople.getInstance();
-            int peopleAmount = db.getList().size();
             for(Person person: db.getList())
             {
                 if(!person.getName().equals(p.getName())) {
-                    person.addDebt(paidamount / peopleAmount);
+                    person.addDebt(p,paidamount/peopleAmount);
                 }
             }
+        }
+        else{
+            Scanner in = new Scanner(System.in);
+            System.out.println("Entering amounts for ticket paid by "+p.getName()+", total amount: "+paidamount);
+            double toPayAmount = paidamount;
+            for(Person person: db.getList())
+            {
+                if(!person.getName().equals(p.getName()))
+                {
+                    System.out.println("How much does "+person.getName()+" owe?");
+                    String debt = in.nextLine();
+                    double personalDebt = Double.parseDouble(debt);
+                    if(personalDebt < toPayAmount) {
+                        person.addDebt(p, personalDebt);
+                        toPayAmount -= personalDebt;
+                    }
+                    else System.out.println("Wrong value entered, total amount is: "+paidamount+" while entered amount is: "+personalDebt);
+                }
+            }
+
         }
         switch(type)
         {

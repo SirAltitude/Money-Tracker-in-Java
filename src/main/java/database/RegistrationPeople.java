@@ -48,13 +48,17 @@ public class RegistrationPeople extends PeopleDB {
 
     @Override
     public void totalBill() {
+//        for(Person person: people)
+//        {
+//            if(person.getDebt()==0.0)
+//            {
+//                System.out.println(person.getName()+" owes nothing!");
+//            }
+//            else System.out.println(person.getName()+ " owes "+ person.getDebt()+ " to everyone else.");
+//        }
         for(Person person: people)
         {
-            if(person.getDebt()==0.0)
-            {
-                System.out.println(person.getName()+" owes nothing!");
-            }
-            else System.out.println(person.getName()+ " owes "+ person.getDebt()+ " to everyone else.");
+            person.printDebts();
         }
     }
 

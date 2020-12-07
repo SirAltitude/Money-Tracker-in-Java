@@ -5,20 +5,17 @@ import person.Person;
 import ticket.Ticket;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
+
 
 public class TicketPanel extends JPanel {
-    private JButton addTicket;
     boolean split;
     private Person payingPerson;
     private String[] options;
     private String chosen;
     private double paidAmount =0;
 
-    private RegisterController controller;
     public TicketPanel(RegisterController controller, JFrame frame) {
-        this.addTicket = new JButton("Add Ticket");
-        this.controller = controller;
+        JButton addTicket = new JButton("Add Ticket");
 
         addTicket.addActionListener(evt -> {
             options = controller.getNames();
@@ -32,6 +29,6 @@ public class TicketPanel extends JPanel {
         });
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        this.add(this.addTicket);
+        this.add(addTicket);
     }
 }

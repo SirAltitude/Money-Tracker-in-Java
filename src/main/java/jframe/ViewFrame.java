@@ -3,6 +3,7 @@ package jframe;
 import controller.RegisterController;
 import jframe.panels.ListPanel;
 import jframe.panels.PeopleRegPanel;
+import jframe.panels.TicketPanel;
 import jframe.panels.TotalBillPanel;
 import person.Person;
 
@@ -14,6 +15,7 @@ public class ViewFrame extends JFrame {
     ListPanel panel;
     PeopleRegPanel buttonsReg;
     TotalBillPanel buttonTotalBill;
+    TicketPanel buttonTicket;
     Person p1;
 
     public ViewFrame(RegisterController register, Person p1)
@@ -34,12 +36,14 @@ public class ViewFrame extends JFrame {
 
         buttonsReg = new PeopleRegPanel(p1, register, this);
         buttonTotalBill = new TotalBillPanel(register, this);
+        buttonTicket = new TicketPanel(register,this);
 
         panel = new ListPanel();
 
         this.add(panel);
         this.add(buttonsReg);
         this.add(buttonTotalBill);
+        this.add(buttonTicket);
         this.setVisible(true);
     }
 }

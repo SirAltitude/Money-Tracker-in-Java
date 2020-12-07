@@ -6,6 +6,8 @@ import database.TicketsDB;
 import person.Person;
 import ticket.Ticket;
 
+import java.util.Arrays;
+
 public class RegisterController {
 
     private PeopleDB peopleDB;
@@ -50,6 +52,12 @@ public class RegisterController {
     }
     public void printBill(){
         peopleDB.totalBill();
+    }
+    public String[] getNames()
+    {
+
+        return peopleDB.getList().stream().map(Person::getName).toArray(String[]::new);
+        //Code from: https://stackoverflow.com/questions/27693236/converting-list-of-objects-to-an-array-of-strings
     }
 }
 

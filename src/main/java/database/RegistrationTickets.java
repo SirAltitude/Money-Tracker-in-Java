@@ -37,6 +37,7 @@ public class RegistrationTickets extends TicketsDB {
     @Override
     public void printDatabase()
     {
+        System.out.println("\n---- Active Tickets -----");
         if(tickets.size()!=0) {
             for (Ticket t : tickets) {
                 System.out.println(t.getTicketType() + ", " + t.getPaidAmount()+"eur" + " was paid by " +t.getPayer().getName() + ". Even split? " + t.getSplit());

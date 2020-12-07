@@ -75,6 +75,7 @@ public class RegistrationPeople extends PeopleDB {
 
     @Override
     public void printDatabase() {
+        System.out.println("\n---- People on this trip ----");
         for(Person p: people)
         {
             System.out.println(p.getName());

@@ -65,23 +65,12 @@ public class Main {
 //        register.addTicket(restaurantTicketEli);
 //        p2.addTicket(restaurantTicketEli);
 //
-        Ticket sportsTicket_Anton = factory.makeTicket(TicketTypeEnum.sports.getValue(), p1,20, !split);
-        register.addTicket(sportsTicket_Anton);
-        p1.addTicket(sportsTicket_Anton);
+//        Ticket sportsTicket_Anton = factory.makeTicket(TicketTypeEnum.sports.getValue(), p1,20, !split);
+//        register.addTicket(sportsTicket_Anton);
+//        p1.addTicket(sportsTicket_Anton);
 
-        // Output
-        System.out.println("\n---- People on this trip ----");
+        // Output test methods
         register.printPeopleDatabase();
-
-        System.out.println("\n---- Active Tickets -----");
         register.printTicketDatabase();
-
-//        for(Person p: peopleDB.getList()) {
-//            System.out.format("\n%s has active tickets: \n", p.getName());
-//            p.printTickets();
-//        }
-
-//        System.out.println("\n---- Total Bill -----");
-//        register.printBill();
     }
 }

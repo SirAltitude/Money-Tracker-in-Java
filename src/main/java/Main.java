@@ -42,35 +42,12 @@ public class Main {
         ticketsDB.addObserver(printEntryTicket);
         ticketsDB.addObserver(printUpdate);
 
-
-        // Creating and registering Person
-//        register.addPerson("Anton");
-//        Person p1 = peopleDB.getPerson("Anton");
-//
-//        register.addPerson("Eli");
-//        Person p2 = peopleDB.getPerson("Eli");
-
-        // ViewPanel
+        // JFrame
         ViewFrame view = new ViewFrame(register);
         view.initialize();
 
-        // Creating and registering Tickets
-        boolean split = true;
-
-//        Ticket restaurantTicket = factory.makeTicket(TicketTypeEnum.restaurant.getValue(), p1,15, split);
-//        register.addTicket(restaurantTicket);
-//        p1.addTicket(restaurantTicket);
-
-//        Ticket restaurantTicketEli = factory.makeTicket(TicketTypeEnum.restaurant.getValue(), p2,10, split);
-//        register.addTicket(restaurantTicketEli);
-//        p2.addTicket(restaurantTicketEli);
-//
-//        Ticket sportsTicket_Anton = factory.makeTicket(TicketTypeEnum.sports.getValue(), p1,20, !split);
-//        register.addTicket(sportsTicket_Anton);
-//        p1.addTicket(sportsTicket_Anton);
-
-        // Output test methods
-//        register.printPeopleDatabase();
-//        register.printTicketDatabase();
+//      TODO
+//      fix nullpointerexception that occurs when adding 3 people to DB
+//      and then making tickets for 1, then for second one.
     }
 }

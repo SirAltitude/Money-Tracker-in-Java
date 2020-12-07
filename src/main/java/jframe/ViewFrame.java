@@ -18,11 +18,10 @@ public class ViewFrame extends JFrame {
     TicketPanel buttonTicket;
     Person p1;
 
-    public ViewFrame(RegisterController register, Person p1)
+    public ViewFrame(RegisterController register)
     {
         super("Expenses organizer");
         this.register = register;
-        this.p1 = p1;
     }
 
     public void initialize()
@@ -34,7 +33,7 @@ public class ViewFrame extends JFrame {
         GridBagLayout layout = new GridBagLayout();
         this.setLayout(layout);
 
-        buttonsReg = new PeopleRegPanel(p1, register, this);
+        buttonsReg = new PeopleRegPanel(register, this);
         buttonTotalBill = new TotalBillPanel(register, this);
         buttonTicket = new TicketPanel(register,this);
 

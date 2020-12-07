@@ -44,22 +44,22 @@ public class Main {
 
 
         // Creating and registering Person
-        register.addPerson("Anton");
-        Person p1 = peopleDB.getPerson("Anton");
-
-        register.addPerson("Eli");
-        Person p2 = peopleDB.getPerson("Eli");
+//        register.addPerson("Anton");
+//        Person p1 = peopleDB.getPerson("Anton");
+//
+//        register.addPerson("Eli");
+//        Person p2 = peopleDB.getPerson("Eli");
 
         // ViewPanel
-        ViewFrame view = new ViewFrame(register,p1);
+        ViewFrame view = new ViewFrame(register);
         view.initialize();
 
         // Creating and registering Tickets
         boolean split = true;
 
-        Ticket restaurantTicket = factory.makeTicket(TicketTypeEnum.restaurant.getValue(), p1,15, split);
-        register.addTicket(restaurantTicket);
-        p1.addTicket(restaurantTicket);
+//        Ticket restaurantTicket = factory.makeTicket(TicketTypeEnum.restaurant.getValue(), p1,15, split);
+//        register.addTicket(restaurantTicket);
+//        p1.addTicket(restaurantTicket);
 
 //        Ticket restaurantTicketEli = factory.makeTicket(TicketTypeEnum.restaurant.getValue(), p2,10, split);
 //        register.addTicket(restaurantTicketEli);
@@ -70,7 +70,7 @@ public class Main {
 //        p1.addTicket(sportsTicket_Anton);
 
         // Output test methods
-        register.printPeopleDatabase();
-        register.printTicketDatabase();
+//        register.printPeopleDatabase();
+//        register.printTicketDatabase();
     }
 }

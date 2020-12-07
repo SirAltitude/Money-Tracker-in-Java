@@ -12,13 +12,13 @@ public class ListPanel extends JPanel {
 
     public ListPanel()
     {
-        JLabel label = new JLabel("Registrations");
+       // JLabel label = new JLabel("Registrations");
         entryListModel = new DefaultListModel<>();
         entryJList = new JList<>(entryListModel);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        this.add(label);
+        //this.add(label);
         this.add(entryJList);
     }
 

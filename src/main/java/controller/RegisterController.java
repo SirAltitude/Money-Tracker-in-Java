@@ -1,11 +1,13 @@
 package controller;
 
+import database.RegistrationPeople;
 import factory.AFact;
 import database.PeopleDB;
 import database.TicketsDB;
 import person.Person;
 import ticket.Ticket;
 
+import java.awt.geom.AffineTransform;
 import java.util.Arrays;
 
 public class RegisterController {
@@ -44,6 +46,18 @@ public class RegisterController {
     public void printPeopleDatabase()
     {
         peopleDB.printDatabase();
+    }
+
+    public PeopleDB getPeopleDB() {
+        return peopleDB;
+    }
+
+    public TicketsDB getTicketsDB() {
+        return ticketsDB;
+    }
+    public AFact getFactory()
+    {
+        return factory;
     }
 
     public void printTicketDatabase()

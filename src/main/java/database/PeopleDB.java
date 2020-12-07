@@ -8,8 +8,7 @@ import java.util.Observer;
 
 public abstract class PeopleDB extends Observable {
 
-    public PeopleDB(){}
-
+    public PeopleDB(){};
     public abstract void addPerson(Person p);
     public abstract void removePerson(Person p);
     public abstract void totalBill();

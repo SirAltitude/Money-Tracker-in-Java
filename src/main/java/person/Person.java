@@ -54,11 +54,13 @@ public class Person {
     }
     public void addDebt(Person person,double value){
         double previousval = 0;
+        double newval =0;
         if(debts.size()!=0) {
             previousval = debts.get(person);
+            newval = previousval + value;
+            debts.put(person,newval);
         }
-        double newval = previousval + value;
-        debts.put(person,newval);
+        else debts.put(person,value);
     }
 
     public double getDebt()

@@ -22,12 +22,7 @@ public class PeopleRegPanel extends JPanel {
         this.p = p;
 
         addPersonAdderButtonActionListener();
-        addPerson.addActionListener(new java.awt.event.ActionListener(){
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                name = JOptionPane.showInputDialog(frame,"What is the person's name?",null);
-            }
-        });
+        addPerson.addActionListener(evt -> name = JOptionPane.showInputDialog(frame,"What is the person's name?",null));
 //      Code from: https://stackoverflow.com/questions/8852560/how-to-make-popup-window-in-java
 
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));

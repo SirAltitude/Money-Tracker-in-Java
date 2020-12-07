@@ -56,6 +56,7 @@ public class RegistrationPeople extends PeopleDB {
 //            }
 //            else System.out.println(person.getName()+ " owes "+ person.getDebt()+ " to everyone else.");
 //        }
+        System.out.println("\n---- Total Bill -----");
         for(Person person: people)
         {
             person.printDebts();

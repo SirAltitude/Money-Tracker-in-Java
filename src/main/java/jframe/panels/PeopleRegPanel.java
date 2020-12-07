@@ -4,15 +4,17 @@ import controller.RegisterController;
 import person.Person;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 
-public class RegistrationButtonPanel extends JPanel {
+public class PeopleRegPanel extends JPanel {
     private JButton addPerson;
+    String name;
     private JButton removePerson;
 
     private RegisterController controller;
     private Person p;
 
-    public RegistrationButtonPanel(Person p, RegisterController controller) {
+    public PeopleRegPanel(Person p, RegisterController controller, JFrame frame) {
         JLabel label = new JLabel("Registration of people");
         this.addPerson = new JButton("Add Person");
         this.removePerson = new JButton("Remove Person");
@@ -20,6 +22,13 @@ public class RegistrationButtonPanel extends JPanel {
         this.p = p;
 
         addPersonAdderButtonActionListener();
+        addPerson.addActionListener(new java.awt.event.ActionListener(){
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                name = JOptionPane.showInputDialog(frame,"What is the person's name?",null);
+            }
+        });
+//      Code from: https://stackoverflow.com/questions/8852560/how-to-make-popup-window-in-java
 
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
@@ -30,15 +39,14 @@ public class RegistrationButtonPanel extends JPanel {
 
     public void addPersonAdderButtonActionListener()
     {
-
-        this.addPerson.addActionListener(listener -> controller.addPerson("TEST"));
+       this.addPerson.addActionListener(listener -> controller.addPerson(name));
     }
 
     public void addPersonRemoverButtonActionListener()
     {
         this.addPerson.addActionListener(listener ->
         {
-            // controller.removePerson();
+            //controller.removePerson();
         });
     }
 }

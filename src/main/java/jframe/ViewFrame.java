@@ -2,7 +2,8 @@ package jframe;
 
 import controller.RegisterController;
 import jframe.panels.ListPanel;
-import jframe.panels.RegistrationButtonPanel;
+import jframe.panels.PeopleRegPanel;
+import jframe.panels.TotalBillPanel;
 import person.Person;
 
 import javax.swing.*;
@@ -11,7 +12,8 @@ import java.awt.*;
 public class ViewFrame extends JFrame {
     RegisterController register;
     ListPanel panel;
-    RegistrationButtonPanel buttons;
+    PeopleRegPanel buttonsReg;
+    TotalBillPanel buttonTotalBill;
     Person p1;
 
     public ViewFrame(RegisterController register, Person p1)
@@ -30,15 +32,14 @@ public class ViewFrame extends JFrame {
         GridBagLayout layout = new GridBagLayout();
         this.setLayout(layout);
 
-        buttons = new RegistrationButtonPanel(p1, register);
+        buttonsReg = new PeopleRegPanel(p1, register, this);
+        buttonTotalBill = new TotalBillPanel(register, this);
+
         panel = new ListPanel();
 
         this.add(panel);
-        this.add(buttons);
+        this.add(buttonsReg);
+        this.add(buttonTotalBill);
         this.setVisible(true);
-
     }
-
-
-
 }

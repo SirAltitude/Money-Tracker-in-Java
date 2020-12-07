@@ -81,7 +81,7 @@ public class Main {
 //            p.printTickets();
 //        }
 
-        System.out.println("\n---- Total Bill -----");
-        register.printBill();
+//        System.out.println("\n---- Total Bill -----");
+//        register.printBill();
     }
 }

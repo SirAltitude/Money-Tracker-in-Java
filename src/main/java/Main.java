@@ -9,10 +9,7 @@ import jframe.ViewFrame;
 import observers.ObserverEntryPerson;
 import observers.ObserverEntryTicket;
 import observers.ObserverUpdate;
-import person.Person;
-import ticket.Ticket;
 
-import javax.swing.text.View;
 
 public class Main {
     public static void main(String[] args) {

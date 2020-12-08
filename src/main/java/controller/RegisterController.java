@@ -23,13 +23,6 @@ public class RegisterController {
         this.factory = fact;
     }
 
-//    public void addEvent(Person person, double paidAmount, int eventType)
-//    {
-//        Ticket t = factory.makeTicket(eventType, person,paidAmount);
-//        ticketsDB.addTicket(t);
-//        person.addTicket(t);
-//    }
-
     public void addTicket(Ticket ticket)
     {
         this.ticketsDB.addTicket(ticket);
@@ -43,6 +36,7 @@ public class RegisterController {
     {
         this.peopleDB.removePerson(person);
     }
+
     public void printPeopleDatabase()
     {
         peopleDB.printDatabase();
@@ -69,7 +63,6 @@ public class RegisterController {
     }
     public String[] getNames()
     {
-
         return peopleDB.getList().stream().map(Person::getName).toArray(String[]::new);
         //Code from: https://stackoverflow.com/questions/27693236/converting-list-of-objects-to-an-array-of-strings
     }

@@ -1,4 +1,4 @@
-package factory;
+package ticket;
 
 import person.Person;
 import ticket.Ticket;

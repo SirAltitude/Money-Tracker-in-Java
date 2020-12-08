@@ -55,7 +55,8 @@ public class Person {
     public void addDebt(Person person,double value){
         double previousval = 0;
         double newval =0;
-        if(debts.size()!=0) {
+        //System.out.println(debts.get(person));
+        if(debts.containsKey(person.getName())) {
             previousval = debts.get(person);
             newval = previousval + value;
             debts.put(person,newval);
@@ -66,5 +67,9 @@ public class Person {
     public double getDebt()
     {
         return debt;
+    }
+    public String toString()
+    {
+        return String.format("%s was added to the trip.",this.name);
     }
 }

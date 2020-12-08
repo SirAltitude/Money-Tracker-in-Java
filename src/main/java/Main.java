@@ -41,6 +41,8 @@ public class Main {
 
         // JFrame
         ViewFrame view = new ViewFrame(register);
+        peopleDB.addObserver(view);
+        ticketsDB.addObserver(view);
         view.initialize();
 
 //      TODO

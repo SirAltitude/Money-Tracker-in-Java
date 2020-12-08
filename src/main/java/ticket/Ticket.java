@@ -7,10 +7,7 @@ public abstract class Ticket {
     protected Person person;
     protected boolean splitEvenly;
 
-    public Ticket(){
-        this.paidAmount = 0;
-    }
-
+  //alles behalve to string moet abstract zijn
     public Person getPayer()
     {
         return person;
@@ -20,7 +17,10 @@ public abstract class Ticket {
         return paidAmount;
     }
     public abstract String getTicketType();
-
+    public String toString()
+    {
+        return String.format("%s ticket was paid by %s for an amount of %s",this.getTicketType(),this.getPayer().getName(),this.getPaidAmount());
+    }
     public boolean getSplit(){
         return splitEvenly;
     }

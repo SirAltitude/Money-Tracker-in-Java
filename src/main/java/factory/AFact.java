@@ -12,11 +12,4 @@ public abstract class AFact {
         return new Person(name);
     }
 
-//    public Ticket createTicket(Person person, double paidAmount, String eventType){
-//        return new Ticket(person,paidAmount,eventType);
-//    }
-
-    public AFact getFactory(){
-        return this;
-    }
 }

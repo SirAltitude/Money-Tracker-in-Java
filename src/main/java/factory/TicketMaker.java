@@ -3,7 +3,7 @@ package factory;
 import database.PeopleDB;
 import database.RegistrationPeople;
 import person.Person;
-import ticket.Ticket;
+import ticket.*;
 
 import java.util.Scanner;
 

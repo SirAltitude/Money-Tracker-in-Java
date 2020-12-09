@@ -16,8 +16,8 @@ public class PeopleRegPanel extends JPanel {
 
 
     public PeopleRegPanel(RegisterController controller, JFrame frame) {
-        JLabel label = new JLabel("Registration of people");
-        label.setFont(new Font("Veranda",Font.BOLD,12));
+       // JLabel label = new JLabel("Registration of people");
+       // label.setFont(new Font("Veranda",Font.BOLD,12));
         this.addPerson = new JButton("Add Person");
         this.removePerson = new JButton("Remove Person");
         this.controller = controller;
@@ -28,7 +28,7 @@ public class PeopleRegPanel extends JPanel {
                 } //      Code from: https://stackoverflow.com/questions/8852560/how-to-make-popup-window-in-java
         );
 
-        this.add(label);
+       // this.add(label);
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         this.add(this.addPerson);
         this.add(this.removePerson);

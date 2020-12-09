@@ -17,7 +17,6 @@ public class ListPanel extends JPanel {
 
     public ListPanel()
     {
-        //JLabel label = new JLabel("Registrations");
         ticketListModel = new DefaultListModel<>();
         personListModel = new DefaultListModel<>();
         ticketJList = new JList<>(ticketListModel);
@@ -26,10 +25,9 @@ public class ListPanel extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         personJList.setBounds(0,10,50,50);
         ticketJList.setBounds(500,50,10,10);
-        //this.add(label);
+
         this.setLayout(new BorderLayout());
         this.add(ticketJList,BorderLayout.SOUTH);
-
         this.add(personJList,BorderLayout.NORTH);
     }
 
@@ -39,6 +37,9 @@ public class ListPanel extends JPanel {
     }
     public void addPerson(Person p)
     {
+        this.personListModel.addElement(p);
+    }
+    public void printBill(Person p) {
         this.personListModel.addElement(p);
     }
 }

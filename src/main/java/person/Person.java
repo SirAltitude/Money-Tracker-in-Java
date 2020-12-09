@@ -63,10 +63,14 @@ public class Person {
         }
         else debts.put(person,value);
     }
-
-    public double getDebt()
+    public void setDebtFinal(Person person, double value)
     {
-        return debt;
+        debts.put(person,value);
+    }
+
+    public HashMap<Person, Double> getDebt()
+    {
+        return debts;
     }
     public String toString()
     {

@@ -46,7 +46,7 @@ public class Main {
         view.initialize();
 
 //      TODO
-//      fix nullpointerexception that occurs when adding 3 people to DB
-//      and then making tickets for 1, then for second one.
+//      fix total bill function
+
     }
 }

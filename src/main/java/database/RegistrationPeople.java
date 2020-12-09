@@ -48,17 +48,37 @@ public class RegistrationPeople extends PeopleDB {
 
     @Override
     public void totalBill() {
-//        for(Person person: people)
-//        {
-//            if(person.getDebt()==0.0)
-//            {
-//                System.out.println(person.getName()+" owes nothing!");
-//            }
-//            else System.out.println(person.getName()+ " owes "+ person.getDebt()+ " to everyone else.");
-//        }
         System.out.println("\n---- Total Bill -----");
         for(Person person: people)
         {
+            for(Person p: people)
+            {
+                if(!p.getName().equals(person.getName()))
+                {
+                    //System.out.println("Name not equal");
+                    if(p.getDebts().containsKey(person) && person.getDebts().containsKey(p))
+                    {
+                    ///System.out.println(p.getName()+" has key for "+person.getName());
+                        if(p.getDebts().get(person) >= person.getDebts().get(p))
+                        {
+                            //System.out.println(p.getName()+" has bigger debt than "+person.getName());
+                            double finalval = (p.getDebts().get(person) - person.getDebts().get(p));
+                            p.setDebtFinal(person,finalval);
+                            person.getDebts().remove(p);
+                        }
+                        else if (p.getDebts().get(person) <= person.getDebts().get(p))
+                        {
+                            //System.out.println(p.getName()+"has smaller debt than "+person.getName());
+                            double finalval = (person.getDebts().get(p) - p.getDebts().get(person));
+                            person.setDebtFinal(p,finalval);
+                            p.getDebts().remove(person);
+                        }
+                    }
+                }
+            }
+
+
+
             person.printDebts();
         }
     }

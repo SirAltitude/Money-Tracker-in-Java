@@ -46,7 +46,9 @@ public class Main {
         view.initialize();
 
 //      TODO
-//      fix total bill function
+//      fix remove person
+//      fix deleted person list
+//      fix other tickets
 
     }
 }

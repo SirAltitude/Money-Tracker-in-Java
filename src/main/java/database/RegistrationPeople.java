@@ -55,20 +55,16 @@ public class RegistrationPeople extends PeopleDB {
             {
                 if(!p.getName().equals(person.getName()))
                 {
-                    //System.out.println("Name not equal");
                     if(p.getDebts().containsKey(person) && person.getDebts().containsKey(p))
                     {
-                    ///System.out.println(p.getName()+" has key for "+person.getName());
                         if(p.getDebts().get(person) >= person.getDebts().get(p))
                         {
-                            //System.out.println(p.getName()+" has bigger debt than "+person.getName());
                             double finalval = (p.getDebts().get(person) - person.getDebts().get(p));
                             p.setDebtFinal(person,finalval);
                             person.getDebts().remove(p);
                         }
                         else if (p.getDebts().get(person) <= person.getDebts().get(p))
                         {
-                            //System.out.println(p.getName()+"has smaller debt than "+person.getName());
                             double finalval = (person.getDebts().get(p) - p.getDebts().get(person));
                             person.setDebtFinal(p,finalval);
                             p.getDebts().remove(person);
@@ -76,9 +72,6 @@ public class RegistrationPeople extends PeopleDB {
                     }
                 }
             }
-
-
-
             person.printDebts();
         }
     }

@@ -56,7 +56,7 @@ public class Person {
         double previousval = 0;
         double newval =0;
         //System.out.println(debts.get(person));
-        if(debts.containsKey(person.getName())) {
+        if(debts.containsKey(person)) {
             previousval = debts.get(person);
             newval = previousval + value;
             debts.put(person,newval);

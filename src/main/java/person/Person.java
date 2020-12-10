@@ -2,6 +2,7 @@ package person;
 
 import ticket.Ticket;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -12,7 +13,7 @@ public class Person {
     private ArrayList<Ticket> tickets;
     private HashMap<Person, Double> debts;
     private double debt;
-
+    private static DecimalFormat df = new DecimalFormat("0.00");
     public Person(String name)
     {
     this.name = name;
@@ -32,9 +33,12 @@ public class Person {
     }
     public void printDebts()
     {
+
         for(Map.Entry<Person, Double> entry: this.debts.entrySet())
         {
-            System.out.println(this.name + " owes "+entry.getKey().getName()+", "+entry.getValue()+"euros.");
+            System.out.println(this.name + " owes "+entry.getKey().getName()+", "+df.format((entry.getValue()))+"euros.");
+            // Formatting double: https://stackoverflow.com/questions/12806278/double-decimal-formatting-in-java
+
         }
         if(debts.size() == 0)
         {
@@ -52,16 +56,15 @@ public class Person {
             System.out.println(ticket.getTicketType() + ", value: "+ticket.getPaidAmount());
         }
     }
-    public void addDebt(Person person,double value){
+    public void addDebt(Person person,double value) {
         double previousval = 0;
-        double newval =0;
-        //System.out.println(debts.get(person));
-        if(debts.containsKey(person)) {
+        double newval = 0;
+        if (debts.containsKey(person)) {
             previousval = debts.get(person);
             newval = previousval + value;
-            debts.put(person,newval);
-        }
-        else debts.put(person,value);
+            debts.put(person, newval);
+        } else if (value != 0)
+            debts.put(person, value);
     }
     public void setDebtFinal(Person person, double value)
     {

@@ -31,26 +31,6 @@ public class TicketMaker extends AFact{
                 }
             }
         }
-        else{
-            Scanner in = new Scanner(System.in);
-            System.out.println("Entering amounts for ticket paid by "+p.getName()+", total amount: "+paidamount);
-            double toPayAmount = paidamount;
-            for(Person person: db.getList())
-            {
-                if(!person.getName().equals(p.getName()))
-                {
-                    System.out.println("How much does "+person.getName()+" owe?");
-                    String debt = in.nextLine();
-                    double personalDebt = Double.parseDouble(debt);
-                    if(personalDebt < toPayAmount) {
-                        person.addDebt(p, personalDebt);
-                        toPayAmount -= personalDebt;
-                    }
-                    else System.out.println("Wrong value entered, total amount is: "+paidamount+" while entered amount is: "+personalDebt);
-                }
-            }
-
-        }
         switch(type)
         {
             case 1:

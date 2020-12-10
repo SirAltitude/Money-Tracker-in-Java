@@ -24,7 +24,8 @@ public class PeopleRegPanel extends JPanel {
 
         addPerson.addActionListener(evt -> {
                     name = JOptionPane.showInputDialog(frame, "What is the person's name?", null);
-                    controller.addPerson(name);
+                    if(!(name == null) && !name.isEmpty())
+                        controller.addPerson(name);
                 } //      Code from: https://stackoverflow.com/questions/8852560/how-to-make-popup-window-in-java
         );
 

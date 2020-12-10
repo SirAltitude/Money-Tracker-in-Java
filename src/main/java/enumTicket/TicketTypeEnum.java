@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
+package enumTicket;
 
 public enum TicketTypeEnum {
     restaurant(1),

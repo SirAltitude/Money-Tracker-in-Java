@@ -49,6 +49,5 @@ public class Main {
 //      fix remove person
 //      fix deleted person list
 //      fix other tickets
-
     }
 }

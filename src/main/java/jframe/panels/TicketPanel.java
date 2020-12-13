@@ -3,12 +3,10 @@ package jframe.panels;
 import controller.RegisterController;
 import person.Person;
 import ticket.Ticket;
-import enumTicket.TicketTypeEnum;
 import javax.swing.*;
 
 
 public class TicketPanel extends JPanel {
-    boolean split;
     private Person payingPerson;
     private String[] options;
     private String chosenPerson,chosenTicketType,inputAmount;
@@ -16,7 +14,6 @@ public class TicketPanel extends JPanel {
     private double paidAmount,debtAmount =0;
     private Ticket t;
     private final String[] optionsTicket={"Cinema","Restaurant","Sports","Transport"};
-    private TicketTypeEnum ticketTypeEnum;
     private boolean isSplit,canCreateTicket;
 
     public TicketPanel(RegisterController controller, JFrame frame) {
@@ -45,17 +42,14 @@ public class TicketPanel extends JPanel {
                             break;
                     }
                 }
-                System.out.println(EventType);
                 chosenPerson = (String) JOptionPane.showInputDialog(frame, "Who paid?", "New Ticket Parameters", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 payingPerson = controller.getPeopleDB().getPerson(chosenPerson);
-                System.out.println(chosenPerson);
                 ticketType = JOptionPane.showConfirmDialog(frame,"Is the ticket split evenly?","New Ticket Parameters",JOptionPane.YES_NO_OPTION);
                 if(ticketType == JOptionPane.YES_OPTION)
                 {
                     isSplit = true;
                     inputAmount = JOptionPane.showInputDialog(frame, "How much is the total?", null);
                     paidAmount = Double.parseDouble(inputAmount);
-                    System.out.println(paidAmount);
                     canCreateTicket = true;
                 }
                 else {
@@ -70,7 +64,7 @@ public class TicketPanel extends JPanel {
                     {
                         if(!person.getName().equals(payingPerson.getName()))
                         {
-                            String input = (String) JOptionPane.showInputDialog(frame,"How much does "+person.getName()+" owe? \\nThe total value was "+paidAmount+"and the remaining value is "+tempAmount);
+                            String input = JOptionPane.showInputDialog(frame,"How much does "+person.getName()+" owe? The total value was "+paidAmount+" eur and the remaining value is "+tempAmount+" eur");
                             if((input!=null) && input.isEmpty())
                                 canCreateTicket = false;
                             else{

@@ -84,6 +84,10 @@ public class RegistrationPeople extends PeopleDB {
             }
             person.printDebts();
         }
+        for(Person person: deletedPeople)
+        {
+            person.printDebts();
+        }
     }
 
     @Override

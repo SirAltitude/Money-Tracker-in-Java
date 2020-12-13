@@ -19,7 +19,7 @@ public abstract class Ticket {
     public abstract String getTicketType();
     public String toString()
     {
-        return String.format("%s ticket was paid by %s for an amount of %s",this.getTicketType(),this.getPayer().getName(),this.getPaidAmount());
+        return String.format("%s paid ''%s'', %seur",this.getPayer().getName(),this.getTicketType(),this.getPaidAmount());
     }
     public boolean getSplit(){
         return splitEvenly;

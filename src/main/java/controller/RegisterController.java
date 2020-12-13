@@ -27,9 +27,15 @@ public class RegisterController {
     {
         this.ticketsDB.addTicket(ticket);
     }
+
+    public Person createPerson(String name)
+    {
+        return new Person(name);
+    }
+
     public void addPerson(String name)
     {
-        this.peopleDB.addPerson(factory.createPerson(name));
+        this.peopleDB.addPerson(this.createPerson(name));
     }
 
     public void removePerson(Person person)
@@ -49,6 +55,7 @@ public class RegisterController {
     public TicketsDB getTicketsDB() {
         return ticketsDB;
     }
+
     public AFact getFactory()
     {
         return factory;
@@ -58,6 +65,7 @@ public class RegisterController {
     {
         ticketsDB.printDatabase();
     }
+
     public void printBill(){
         peopleDB.totalBill();
     }

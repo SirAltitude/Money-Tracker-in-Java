@@ -45,6 +45,7 @@ public class Main {
         ticketsDB.addObserver(view);
         view.initialize();
 
+        // TESTING PURPOSES
 //      TODO
 //      fix remove person
 //      fix deleted person list

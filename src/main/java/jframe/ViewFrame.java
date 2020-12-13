@@ -66,7 +66,7 @@ public class ViewFrame extends JFrame implements Observer {
             panel.addTicket((Ticket) arg);
         }
     else if(o instanceof RegistrationPeople){
-            panel.addPerson((Person)arg);
+            panel.addPerson(((Person)arg).toStringModified());
         }
     }
 }

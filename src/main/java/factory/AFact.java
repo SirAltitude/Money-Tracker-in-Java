@@ -7,9 +7,6 @@ public abstract class AFact {
 
     public abstract Ticket makeTicket(int type, Person p, double paidAmount, boolean split); // cinematicket, bowlingticket, ...
 
-    public Person createPerson(String name)
-    {
-        return new Person(name);
-    }
+
 
 }

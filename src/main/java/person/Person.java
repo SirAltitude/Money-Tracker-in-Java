@@ -13,13 +13,17 @@ public class Person {
     private ArrayList<Ticket> tickets;
     private HashMap<Person, Double> debts;
     private double debt;
+    private boolean deleted;
     private static DecimalFormat df = new DecimalFormat("0.00");
+
+
     public Person(String name)
     {
     this.name = name;
     tickets = new ArrayList<>();
     debts = new HashMap<>();
     debt = 0;
+    deleted = false;
     }
 
     public String getName() //through this method, regController can access the name of a Person
@@ -57,8 +61,8 @@ public class Person {
         }
     }
     public void addDebt(Person person,double value) {
-        double previousval = 0;
-        double newval = 0;
+        double previousval;
+        double newval;
         if (debts.containsKey(person)) {
             previousval = debts.get(person);
             newval = previousval + value;
@@ -75,8 +79,20 @@ public class Person {
     {
         return debts;
     }
-    public String toString()
+    public String toStringModified()
     {
-        return String.format("%s was added to the trip.",this.name);
+        if(this.deleted)
+            return String.format("%s was removed from the trip.",this.name);
+        else return String.format("%s was added to the trip.",this.name);
     }
+
+    public void setDeleted()
+    {
+        deleted = true;
+    }
+    public boolean getDeleted()
+    {
+        return deleted;
+    }
+
 }

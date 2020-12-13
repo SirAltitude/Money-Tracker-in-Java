@@ -11,9 +11,9 @@ public class ListPanel extends JPanel {
 
 
     private JList<Ticket> ticketJList;
-    private JList<Person> personJList;
+    private JList<String> personJList;
     private DefaultListModel<Ticket> ticketListModel;
-    private DefaultListModel<Person> personListModel;
+    private DefaultListModel<String> personListModel;
 
     public ListPanel()
     {
@@ -35,12 +35,12 @@ public class ListPanel extends JPanel {
     {
         this.ticketListModel.addElement(t);
     }
-    public void addPerson(Person p)
+    public void addPerson(String name)
     {
-        this.personListModel.addElement(p);
+        this.personListModel.addElement(name);
     }
-    public void printBill(Person p) {
-        this.personListModel.addElement(p);
-    }
+//    public void printBill(Person p) {
+//        this.personListModel.addElement(name);
+//    }
 }
 

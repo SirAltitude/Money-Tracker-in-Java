@@ -9,14 +9,17 @@ import java.util.Observer;
 public class RegistrationPeople extends PeopleDB {
 
     private final ArrayList<Person> people;
+    private final ArrayList<Person> deletedPeople;
     private static RegistrationPeople registrationPeople_instance;
     private List<Observer> observers;
     private Person key;
+    private Person notifiedPerson;
 
     private RegistrationPeople()
     {
         this.people = new ArrayList<>();
         this.observers = new ArrayList<>();
+        this.deletedPeople = new ArrayList<>();
     }
 
     public static RegistrationPeople getInstance()
@@ -36,6 +39,7 @@ public class RegistrationPeople extends PeopleDB {
     @Override
     public void addPerson(Person p) {
         this.people.add(p);
+        notifiedPerson = p;
         setChanged();
         this.key = p;
         this.notifyObservers();
@@ -44,6 +48,12 @@ public class RegistrationPeople extends PeopleDB {
     @Override
     public void removePerson(Person p) {
         this.people.remove(p);
+        this.deletedPeople.add(p);
+        notifiedPerson = p;
+        p.setDeleted();
+        setChanged();
+        this.key = p;
+        this.notifyObservers();
     }
 
     @Override
@@ -108,7 +118,7 @@ public class RegistrationPeople extends PeopleDB {
     @Override
     public void notifyObservers() {
         for(Observer obs: observers) {
-            obs.update(this, key);
+            obs.update(this, this.notifiedPerson);
         }
     }
 }

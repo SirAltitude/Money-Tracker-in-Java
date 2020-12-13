@@ -14,77 +14,88 @@ public class TicketPanel extends JPanel {
     private double paidAmount,debtAmount =0;
     private Ticket t;
     private final String[] optionsTicket={"Cinema","Restaurant","Sports","Transport"};
-    private boolean isSplit,canCreateTicket;
+    private boolean isSplit,canCreateTicket, cancel;
 
     public TicketPanel(RegisterController controller, JFrame frame) {
         JButton addTicket = new JButton("Add Ticket");
 
         addTicket.addActionListener(evt -> {
-            options = controller.getNames();
-            if(options.length==0) {
-                System.out.println("Er zijn nog geen mensen in de trip, je kan geen tickets toevoegen.");
-            }
-            else {
-                chosenTicketType = (String) JOptionPane.showInputDialog(frame,"What kind of ticket?","New Ticket parameters",JOptionPane.QUESTION_MESSAGE,null,optionsTicket,optionsTicket[0]);
-                if(!chosenTicketType.isEmpty()) {
-                    switch (chosenTicketType) {
-                        case "Restaurant":
-                            EventType = 1;
-                            break;
-                        case "Sports":
-                            EventType = 2;
-                            break;
-                        case "Cinema":
-                            EventType = 3;
-                            break;
-                        case "Transport":
-                            EventType = 4;
-                            break;
+            cancel = false;
+            while (!cancel) {
+                options = controller.getNames();
+                if (options.length == 0) {
+                    JOptionPane.showMessageDialog(frame, "There are no people yet!");
+                    cancel = true;
+                } else {
+                    chosenTicketType = (String) JOptionPane.showInputDialog(frame, "What kind of ticket?", "New Ticket parameters", JOptionPane.QUESTION_MESSAGE, null, optionsTicket, optionsTicket[0]);
+                    if (!chosenTicketType.isEmpty()) {
+                        switch (chosenTicketType) {
+                            case "Restaurant":
+                                EventType = 1;
+                                break;
+                            case "Sports":
+                                EventType = 2;
+                                break;
+                            case "Cinema":
+                                EventType = 3;
+                                break;
+                            case "Transport":
+                                EventType = 4;
+                                break;
+                        }
+                    } else {
+                        cancel = true;
+                        break;
                     }
-                }
-                chosenPerson = (String) JOptionPane.showInputDialog(frame, "Who paid?", "New Ticket Parameters", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-                payingPerson = controller.getPeopleDB().getPerson(chosenPerson);
-                ticketType = JOptionPane.showConfirmDialog(frame,"Is the ticket split evenly?","New Ticket Parameters",JOptionPane.YES_NO_OPTION);
-                if(ticketType == JOptionPane.YES_OPTION)
-                {
-                    isSplit = true;
-                    inputAmount = JOptionPane.showInputDialog(frame, "How much is the total?", null);
-                    paidAmount = Double.parseDouble(inputAmount);
-                    canCreateTicket = true;
-                }
-                else {
-                    isSplit = false;
-                    inputAmount = JOptionPane.showInputDialog(frame, "How much is the total?", null);
-                    if(inputAmount != null)
+                    chosenPerson = (String) JOptionPane.showInputDialog(frame, "Who paid?", "New Ticket Parameters", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                    payingPerson = controller.getPeopleDB().getPerson(chosenPerson);
+                    ticketType = JOptionPane.showConfirmDialog(frame, "Is the ticket split evenly?", "New Ticket Parameters", JOptionPane.YES_NO_OPTION);
+                    if (ticketType == JOptionPane.YES_OPTION) {
+                        isSplit = true;
+                        inputAmount = JOptionPane.showInputDialog(frame, "How much is the total?", null);
                         paidAmount = Double.parseDouble(inputAmount);
-                    if(paidAmount == 0)
-                        canCreateTicket = false;
-                    double tempAmount = paidAmount;
-                    for(Person person: controller.getPeopleDB().getList())
-                    {
-                        if(!person.getName().equals(payingPerson.getName()))
-                        {
-                            String input = JOptionPane.showInputDialog(frame,"How much does "+person.getName()+" owe? The total value was "+paidAmount+" eur and the remaining value is "+tempAmount+" eur");
-                            if((input!=null) && input.isEmpty())
+                        canCreateTicket = true;
+                    } else {
+                        isSplit = false;
+                        inputAmount = JOptionPane.showInputDialog(frame, "How much is the total?", null);
+                        if (inputAmount != null) {
+                            paidAmount = Double.parseDouble(inputAmount);
+                            if (paidAmount == 0) {
                                 canCreateTicket = false;
-                            else{
-                                if((input!=null))
-                                    debtAmount = Double.parseDouble(input);
-                                if(debtAmount < tempAmount)
-                                {
-                                    person.addDebt(payingPerson,debtAmount);
-                                    tempAmount -= debtAmount;
+                                JOptionPane.showMessageDialog(frame,"You entered an incorrect value.");
+                                cancel = true;
+                                break;
+                            }
+                        }
+                        double tempAmount = paidAmount;
+                        for (Person person : controller.getPeopleDB().getList()) {
+                            if (!person.getName().equals(payingPerson.getName())) {
+                                String input = JOptionPane.showInputDialog(frame, "How much does " + person.getName() + " owe? The total value was " + paidAmount + " eur and the remaining value is " + tempAmount + " eur");
+                                if ((input != null) && input.isEmpty()) {
+                                    JOptionPane.showMessageDialog(frame, "You entered an incorrect value.");
+                                    canCreateTicket = false;
+                                    cancel = true;
+                                    break;
                                 }
-                                canCreateTicket = true;
+                                else {
+                                    if ((input != null))
+                                        debtAmount = Double.parseDouble(input);
+                                    if (debtAmount < tempAmount) {
+                                        person.addDebt(payingPerson, debtAmount);
+                                        tempAmount -= debtAmount;
+                                    }
+                                    canCreateTicket = true;
+                                }
                             }
                         }
                     }
-                }
-                if (!payingPerson.getName().isEmpty() && !inputAmount.isEmpty() && !chosenTicketType.isEmpty() && canCreateTicket) {
-                    t = controller.getFactory().makeTicket(EventType, payingPerson, paidAmount, isSplit);
-                    if(t != null) {
-                        controller.addTicket(t);
-                    } else System.out.println("Error during creation of ticket!");
+                    if (!payingPerson.getName().isEmpty() && !inputAmount.isEmpty() && !chosenTicketType.isEmpty() && canCreateTicket && !cancel) {
+                        t = controller.getFactory().makeTicket(EventType, payingPerson, paidAmount, isSplit);
+                        if (t != null) {
+                            controller.addTicket(t);
+                        } else
+                            JOptionPane.showMessageDialog(frame, "Error during creation of ticket. Check your parameters.");
+                    }
                 }
             }
         });

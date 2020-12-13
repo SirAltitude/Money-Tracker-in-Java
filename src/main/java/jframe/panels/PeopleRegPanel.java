@@ -38,6 +38,9 @@ public class PeopleRegPanel extends JPanel {
                     controller.removePerson(toBeRemoved);
                 }
             }
+            else {
+                JOptionPane.showMessageDialog(frame,"There are no people yet!");
+            }
         });
 
        // this.add(label);

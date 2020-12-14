@@ -123,6 +123,7 @@ public class TicketPanel extends JPanel {
                         t = controller.getFactory().makeTicket(EventType, payingPerson, paidAmount, isSplit);
                         if (t != null) {
                             controller.addTicket(t);
+                            cancel = true;
                         } else
                             JOptionPane.showMessageDialog(frame, "Error during creation of ticket. Check your parameters.");
                     }

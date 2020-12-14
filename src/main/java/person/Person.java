@@ -70,6 +70,16 @@ public class Person {
         } else if (value != 0)
             debts.put(person, value);
     }
+
+    public double getTotalDebt()
+    {
+        double tempVal = 0;
+        for(Object value: debts.values())
+        {
+            tempVal += (Double) value;
+        }
+        return tempVal;
+    }
     public void setDebtFinal(Person person, double value)
     {
         debts.put(person,value);

@@ -3,10 +3,7 @@ package jframe;
 import controller.RegisterController;
 import database.RegistrationPeople;
 import database.RegistrationTickets;
-import jframe.panels.ListPanel;
-import jframe.panels.PeopleRegPanel;
-import jframe.panels.TicketPanel;
-import jframe.panels.TotalBillPanel;
+import jframe.panels.*;
 import person.Person;
 import ticket.Ticket;
 
@@ -25,7 +22,7 @@ public class ViewFrame extends JFrame implements Observer {
 
     public ViewFrame(RegisterController register)
     {
-        super("Expenses organizer");
+        super("Trip Money Tracker");
         this.register = register;
         gbc = new GridBagConstraints();
     }
@@ -44,20 +41,22 @@ public class ViewFrame extends JFrame implements Observer {
         buttonTicket = new TicketPanel(register,this);
 
         panel = new ListPanel();
+
         gbc.gridx = 0;
         gbc.gridy = 0;
-
         this.add(buttonsReg,gbc);
+
         gbc.gridx = 1;
-
         this.add(buttonTotalBill,gbc);
-        gbc.gridx= 2;
 
+        gbc.gridx= 2;
         this.add(buttonTicket,gbc);
+
         gbc.gridx = 1;
         gbc.gridy = 3;
         this.add(panel,gbc);
         this.setVisible(true);
+        this.setResizable(true);
     }
 
     @Override

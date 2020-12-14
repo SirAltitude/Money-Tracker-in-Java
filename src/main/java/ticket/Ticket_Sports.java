@@ -13,5 +13,5 @@ public class Ticket_Sports extends Ticket {
     }
 
     @Override
-    public String getTicketType(){return "SportsEvent";}
+    public String getTicketType(){return "Sports";}
 }

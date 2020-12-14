@@ -111,7 +111,20 @@ public class RegistrationPeople extends PeopleDB {
         }
         return false;
     }
-
+    @Override
+    public double getGreatestDebt()
+    {
+        double prevVal = 0, newVal = 0;
+        for(Person person: people)
+        {
+            newVal = person.getTotalDebt();
+            if(newVal > prevVal)
+            {
+                prevVal = newVal;
+            }
+        }
+        return newVal;
+    }
     @Override
     public void printDatabase() {
         System.out.println("\n---- People on this trip ----");

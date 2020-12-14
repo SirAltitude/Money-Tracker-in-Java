@@ -17,6 +17,7 @@ public abstract class PeopleDB extends Observable {
     public abstract ArrayList<Person> getList();
 
     public abstract void printDatabase();
+    public abstract double getGreatestDebt();
 
     public abstract void addObserver(Observer o);
 

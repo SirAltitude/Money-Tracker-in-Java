@@ -4,12 +4,14 @@ import controller.RegisterController;
 import person.Person;
 import ticket.Ticket;
 import javax.swing.*;
+import java.awt.*;
 
 
 public class TicketPanel extends JPanel {
     private Person payingPerson;
     private String[] options;
     private String chosenPerson,chosenTicketType,inputAmount;
+    private JButton addTicket;
     private int ticketType,EventType;
     private double paidAmount,debtAmount =0;
     private Ticket t;
@@ -17,8 +19,11 @@ public class TicketPanel extends JPanel {
     private boolean isSplit,canCreateTicket, cancel;
 
     public TicketPanel(RegisterController controller, JFrame frame) {
-        JButton addTicket = new JButton("Add Ticket");
-
+        addTicket = new JButton("Add Ticket");
+        addTicket.setBackground(Color.RED);
+        addTicket.setFont(new Font("Dialog", Font.PLAIN, 32));
+        addTicket.revalidate();
+        //addTicket.setPreferredSize(new Dimension(200,55));
         addTicket.addActionListener(evt -> {
             cancel = false;
             while (!cancel) {
@@ -130,7 +135,11 @@ public class TicketPanel extends JPanel {
                 }
             }
         });
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        //this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(addTicket);
+    }
+    public void changeColor()
+    {
+        addTicket.setBackground(Color.green);
     }
 }

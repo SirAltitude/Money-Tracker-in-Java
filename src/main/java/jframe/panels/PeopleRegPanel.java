@@ -17,10 +17,20 @@ public class PeopleRegPanel extends JPanel {
 
 
     public PeopleRegPanel(RegisterController controller, JFrame frame) {
-       // JLabel label = new JLabel("Registration of people");
-       // label.setFont(new Font("Veranda",Font.BOLD,12));
+        this.setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
+
         this.addPerson = new JButton("Add Person");
+        addPerson.setFont(new Font("Dialog", Font.PLAIN, 32));
+        addPerson.setSize(200,55);
+        addPerson.setBackground(Color.green);
+        addPerson.revalidate();
+
         this.removePerson = new JButton("Remove Person");
+        removePerson.setFont(new Font("Dialog", Font.PLAIN, 32));
+        removePerson.setSize(200,55);
+        removePerson.setBackground(Color.RED);
+        removePerson.revalidate();
+
         this.controller = controller;
 
         addPerson.addActionListener(evt -> {
@@ -52,9 +62,12 @@ public class PeopleRegPanel extends JPanel {
             }
         });
 
-       // this.add(label);
-        this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+
         this.add(this.addPerson);
         this.add(this.removePerson);
+    }
+    public void changeColor()
+    {
+        removePerson.setBackground(Color.green);
     }
 }

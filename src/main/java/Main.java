@@ -43,7 +43,7 @@ public class Main {
         ViewFrame view = new ViewFrame(register);
         peopleDB.addObserver(view);
         ticketsDB.addObserver(view);
-        view.initialize();
+        view.createAndShowGUI();
 
         // TESTING PURPOSES
 //      TODO

@@ -22,9 +22,12 @@ public class ListPanel extends JPanel {
         ticketJList = new JList<>(ticketListModel);
         personJList = new JList<>(personListModel);
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        personJList.setBounds(0,10,50,50);
-        ticketJList.setBounds(500,50,10,10);
+//        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+//        personJList.setBounds(0,10,50,50);
+//        ticketJList.setBounds(500,50,10,10);
+//
+        ticketJList.setFont(new Font("Dialog", Font.PLAIN, 32));
+        personJList.setFont(new Font("Dialog", Font.PLAIN, 32));
 
         this.setLayout(new BorderLayout());
         this.add(ticketJList,BorderLayout.SOUTH);
@@ -39,8 +42,6 @@ public class ListPanel extends JPanel {
     {
         this.personListModel.addElement(name);
     }
-//    public void printBill(Person p) {
-//        this.personListModel.addElement(name);
-//    }
+
 }
 

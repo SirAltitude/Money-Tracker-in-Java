@@ -67,7 +67,7 @@ public class TicketPanel extends JPanel {
                     if (ticketType == JOptionPane.YES_OPTION) {
                         isSplit = true;
                         temp = JOptionPane.showInputDialog(frame, "How much is the total?", null);
-                        if(temp == null)
+                        if(temp == null || String.valueOf(temp).isEmpty())
                         {
                             cancel = true;
                             break;

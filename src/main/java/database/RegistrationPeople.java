@@ -14,6 +14,7 @@ public class RegistrationPeople extends PeopleDB {
     private List<Observer> observers;
     private Person key;
     private Person notifiedPerson;
+    private boolean billCalculated = false;
 
     private RegistrationPeople()
     {
@@ -82,12 +83,26 @@ public class RegistrationPeople extends PeopleDB {
                     }
                 }
             }
-            person.printDebts();
+            billCalculated = true;
+            person.setBillPrint();
+            setChanged();
+            this.key = person;
+            this.notifyObservers();
         }
         for(Person person: deletedPeople)
         {
-            person.printDebts();
+            billCalculated = true;
+            person.setBillPrint();
+            setChanged();
+            this.key = person;
+            this.notifyObservers();
         }
+        billCalculated = false;
+    }
+
+    public boolean isBillCalculated()
+    {
+        return billCalculated;
     }
 
     @Override

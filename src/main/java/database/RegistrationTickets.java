@@ -62,4 +62,9 @@ public class RegistrationTickets extends TicketsDB {
             obs.update(this, key);
         }
     }
+
+    @Override
+    public ArrayList<Ticket> getList() {
+        return this.tickets;
+    }
 }

@@ -1,5 +1,6 @@
 package jframe.panels;
 
+import controller.RegisterController;
 import database.RegistrationTickets;
 import person.Person;
 import ticket.Ticket;
@@ -14,24 +15,27 @@ public class ListPanel extends JPanel {
     private JList<String> personJList;
     private DefaultListModel<Ticket> ticketListModel;
     private DefaultListModel<String> personListModel;
-
-    public ListPanel()
+    private JList<String> billJlist;
+    private DefaultListModel<String> billListModel;
+    private RegisterController controller;
+    public ListPanel(RegisterController controller)
     {
         ticketListModel = new DefaultListModel<>();
         personListModel = new DefaultListModel<>();
+        billListModel = new DefaultListModel<>();
         ticketJList = new JList<>(ticketListModel);
         personJList = new JList<>(personListModel);
+        billJlist = new JList<>(billListModel);
+        this.controller = controller;
 
-//        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-//        personJList.setBounds(0,10,50,50);
-//        ticketJList.setBounds(500,50,10,10);
-//
         ticketJList.setFont(new Font("Dialog", Font.PLAIN, 32));
         personJList.setFont(new Font("Dialog", Font.PLAIN, 32));
+        billJlist.setFont(new Font("Dialog",Font.BOLD,32));
 
         this.setLayout(new BorderLayout());
-        this.add(new JScrollPane(ticketJList),BorderLayout.SOUTH);
-        this.add(new JScrollPane(personJList),BorderLayout.CENTER);
+        this.add(new JScrollPane(ticketJList),BorderLayout.CENTER);
+        this.add(new JScrollPane(personJList),BorderLayout.NORTH);
+        this.add(new JScrollPane(billJlist),BorderLayout.SOUTH);
     }
 
     public void addTicket(Ticket t)
@@ -42,6 +46,8 @@ public class ListPanel extends JPanel {
     {
         this.personListModel.addElement(name);
     }
-
+    public void totalBill(String name) {
+        this.billListModel.addElement(name);
+    }
 }
 

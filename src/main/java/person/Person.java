@@ -15,7 +15,7 @@ public class Person {
     private double debt;
     private boolean deleted;
     private static DecimalFormat df = new DecimalFormat("0.00");
-
+    private boolean timeForTotalBill = false;
 
     public Person(String name)
     {
@@ -35,19 +35,20 @@ public class Person {
     {
         return this.debts;
     }
-    public void printDebts()
+    public String printDebts()
     {
-
+        String output = null;
         for(Map.Entry<Person, Double> entry: this.debts.entrySet())
         {
-            System.out.println(this.name + " owes "+entry.getKey().getName()+", "+df.format((entry.getValue()))+"euros.");
+            output = this.name + " owes "+entry.getKey().getName()+", "+df.format((entry.getValue()))+"euros.";
             // Formatting double: https://stackoverflow.com/questions/12806278/double-decimal-formatting-in-java
 
         }
         if(debts.size() == 0)
         {
-            System.out.println(this.name+" owes no-one!");
+            output = this.name+" owes no-one!";
         }
+        return output;
     }
     public void addTicket(Ticket t)
     {
@@ -93,6 +94,10 @@ public class Person {
     {
         if(this.deleted)
             return String.format("%s was removed from the trip.",this.name);
+        else if(timeForTotalBill) {
+            timeForTotalBill = false;
+            return printDebts();
+        }
         else return String.format("%s was added to the trip.",this.name);
     }
 
@@ -105,4 +110,8 @@ public class Person {
         return deleted;
     }
 
+    public void setBillPrint()
+    {
+        timeForTotalBill = true;
+    }
 }

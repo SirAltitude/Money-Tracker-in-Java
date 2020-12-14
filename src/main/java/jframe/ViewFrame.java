@@ -118,12 +118,17 @@ public class ViewFrame extends JFrame implements Observer {
     public void update(Observable o, Object arg) { //Observer
         if(o instanceof RegistrationTickets) {
             observerOutput.addTicket((Ticket) arg);
+            changeColor();
         }
     else if(o instanceof RegistrationPeople){
-            observerOutput.addPerson(((Person)arg).toStringModified());
+            if(register.getPeopleDB().isBillCalculated())
+                observerOutput.totalBill(((Person)arg).toStringModified());
+            else observerOutput.addPerson(((Person)arg).toStringModified());
             changeColor();
         }
     }
+    // Source for the "instance of":
+    // https://stackoverflow.com/a/8034790/1746118
 
     public void addComponentsToPane(Container pane)
     {
@@ -144,14 +149,15 @@ public class ViewFrame extends JFrame implements Observer {
         gbc.gridy = 0;
         pane.add(buttonTicket,gbc);
 
-        buttonTotalBill = new TotalBillPanel(register,frame);
+        observerOutput = new ListPanel(this.register);
+
+        buttonTotalBill = new TotalBillPanel(register,frame,observerOutput);
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 0.5;
         gbc.gridx = 3;
         gbc.gridy = 0;
         pane.add(buttonTotalBill,gbc);
 
-        observerOutput = new ListPanel();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.ipady = 10;
         gbc.weightx = 0.0;
@@ -159,14 +165,24 @@ public class ViewFrame extends JFrame implements Observer {
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.anchor = PAGE_END;
+
         pane.add(observerOutput, gbc);
 
+        // Gridbag Constraints source:
+        // https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
 
     }
     public void createAndShowGUI()
     {
-        frame = new JFrame("Test");
-        frame.setPreferredSize(new Dimension(920,400));
+        frame = new JFrame("Money Tracker");
+        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("./money-bag.png"));
+        if(icon == null)
+        {
+            System.out.println("Error loading icon.");
+        }else {
+            frame.setIconImage(icon.getImage());
+        }
+        frame.setPreferredSize(new Dimension(920,540));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         addComponentsToPane(frame.getContentPane());
@@ -181,10 +197,15 @@ public class ViewFrame extends JFrame implements Observer {
     public void changeColor()
     {
         if(!updatedColor) {
-            buttonsReg.changeColor();
-            buttonTotalBill.changeColor();
-            buttonTicket.changeColor();
-            updatedColor = true;
+            if(register.getPeopleDB().getList().size() >=1)
+                buttonsReg.changeColor();
+            if(register.getPeopleDB().getList().size() >=2) {
+                buttonTicket.changeColor();
+            }
+            if(register.getTicketsDB().getList().size()>=1) {
+                buttonTotalBill.changeColor();
+                updatedColor = true;
+            }
         }
     }
 }

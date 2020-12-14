@@ -7,10 +7,9 @@ import java.awt.*;
 
 public class TotalBillPanel extends JPanel {
     private JButton printBill;
-
     private RegisterController controller;
 
-    public TotalBillPanel(RegisterController controller, JFrame frame)
+    public TotalBillPanel(RegisterController controller, JFrame frame, ListPanel panel)
     {
         this.printBill = new JButton("Print Total Bill");
         printBill.setBackground(Color.RED);

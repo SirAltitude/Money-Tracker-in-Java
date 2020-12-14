@@ -18,6 +18,7 @@ public abstract class PeopleDB extends Observable {
 
     public abstract void printDatabase();
     public abstract double getGreatestDebt();
+    public abstract boolean isBillCalculated();
 
     public abstract void addObserver(Observer o);
 

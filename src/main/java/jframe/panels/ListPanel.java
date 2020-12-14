@@ -30,8 +30,8 @@ public class ListPanel extends JPanel {
         personJList.setFont(new Font("Dialog", Font.PLAIN, 32));
 
         this.setLayout(new BorderLayout());
-        this.add(ticketJList,BorderLayout.SOUTH);
-        this.add(personJList,BorderLayout.NORTH);
+        this.add(new JScrollPane(ticketJList),BorderLayout.SOUTH);
+        this.add(new JScrollPane(personJList),BorderLayout.CENTER);
     }
 
     public void addTicket(Ticket t)

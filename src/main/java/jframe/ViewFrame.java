@@ -166,13 +166,15 @@ public class ViewFrame extends JFrame implements Observer {
     public void createAndShowGUI()
     {
         frame = new JFrame("Test");
-        frame.setLocationRelativeTo(null);
-        frame.setPreferredSize(new Dimension(900,300));
+        frame.setPreferredSize(new Dimension(920,400));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         addComponentsToPane(frame.getContentPane());
 
         frame.pack();
+        frame.setLocationRelativeTo(null);
+        // Place of above method is special
+        // Source: https://stackoverflow.com/questions/2442599/how-to-set-jframe-to-appear-centered-regardless-of-monitor-resolution
         frame.setVisible(true);
         frame.setResizable(true);
     }

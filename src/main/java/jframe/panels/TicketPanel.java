@@ -23,11 +23,10 @@ public class TicketPanel extends JPanel {
             cancel = false;
             while (!cancel) {
                 options = controller.getNames();
-                if (options.length == 0) {
-                    JOptionPane.showMessageDialog(frame, "There are no people yet!");
+                if (options.length <= 1) {
+                    JOptionPane.showMessageDialog(frame, "There are not enough people yet!");
                     cancel = true;
                 } else {
-                    /// fix this
                     Object temp = JOptionPane.showInputDialog(frame, "What kind of ticket?", "New Ticket parameters", JOptionPane.QUESTION_MESSAGE, null, optionsTicket, optionsTicket[0]);
                     if(temp == null)
                     {

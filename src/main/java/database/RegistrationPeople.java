@@ -101,6 +101,18 @@ public class RegistrationPeople extends PeopleDB {
     }
 
     @Override
+    public boolean hasPerson(String name) {
+        for(Person person: people)
+        {
+            if(person.getName().equals(name))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public void printDatabase() {
         System.out.println("\n---- People on this trip ----");
         for(Person p: people)
@@ -125,4 +137,5 @@ public class RegistrationPeople extends PeopleDB {
             obs.update(this, this.notifiedPerson);
         }
     }
+
 }

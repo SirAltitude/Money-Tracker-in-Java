@@ -15,10 +15,10 @@ public class TotalBillPanel extends JPanel {
         this.controller = controller;
 
         printBill.addActionListener(evt -> {
-            if(controller.getNames().length != 0)
+            if(controller.getNames().length > 1)
             {
                 controller.printBill();
-            } else JOptionPane.showMessageDialog(frame,"There are no people yet!");
+            } else JOptionPane.showMessageDialog(frame,"There are not enough people yet!");
         });
 
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));

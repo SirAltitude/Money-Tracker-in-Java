@@ -14,13 +14,16 @@ public class TotalBillPanel extends JPanel {
         this.printBill = new JButton("Print Total Bill");
         this.controller = controller;
 
-        addTotalBillButtonActionListener();
+        printBill.addActionListener(evt -> {
+            if(controller.getNames().length != 0)
+            {
+                controller.printBill();
+            } else JOptionPane.showMessageDialog(frame,"There are no people yet!");
+        });
+
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         this.add(this.printBill);
     }
 
-    public void addTotalBillButtonActionListener()
-    {
-        this.printBill.addActionListener(listener -> controller.printBill());
-    }
+
 }

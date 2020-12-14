@@ -32,10 +32,13 @@ public class PeopleRegPanel extends JPanel {
         removePerson.addActionListener(evt -> {
             options = controller.getNames();
             if(options.length != 0) {
-                name = (String) JOptionPane.showInputDialog(frame, "Who left the trip?", "Remove a person", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-                if (!name.isEmpty()) {
-                    toBeRemoved = controller.getPeopleDB().getPerson(name);
-                    controller.removePerson(toBeRemoved);
+                Object temp= JOptionPane.showInputDialog(frame, "Who left the trip?", "Remove a person", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                if(temp != null) {
+                    name = String.valueOf(temp);
+                    if (!name.isEmpty()) {
+                        toBeRemoved = controller.getPeopleDB().getPerson(name);
+                        controller.removePerson(toBeRemoved);
+                    }
                 }
             }
             else {

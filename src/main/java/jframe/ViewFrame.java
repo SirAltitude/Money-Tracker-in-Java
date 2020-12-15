@@ -121,9 +121,7 @@ public class ViewFrame extends JFrame implements Observer {
             changeColor();
         }
     else if(o instanceof RegistrationPeople){
-            if(register.getPeopleDB().isBillCalculated())
-                observerOutput.totalBill(((Person)arg).toStringModified());
-            else observerOutput.addPerson(((Person)arg).toStringModified());
+            observerOutput.addPerson(((Person)arg).toStringModified());
             changeColor();
         }
     }
@@ -182,7 +180,7 @@ public class ViewFrame extends JFrame implements Observer {
         }else {
             frame.setIconImage(icon.getImage());
         }
-        frame.setPreferredSize(new Dimension(920,540));
+        frame.setPreferredSize(new Dimension(1100,650));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         addComponentsToPane(frame.getContentPane());
@@ -192,7 +190,7 @@ public class ViewFrame extends JFrame implements Observer {
         // Place of above method is special
         // Source: https://stackoverflow.com/questions/2442599/how-to-set-jframe-to-appear-centered-regardless-of-monitor-resolution
         frame.setVisible(true);
-        frame.setResizable(true);
+//        setResizable(true);
     }
     public void changeColor()
     {

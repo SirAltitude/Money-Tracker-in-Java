@@ -43,6 +43,7 @@ public class PeopleRegPanel extends JPanel {
                         else {
                             controller.addPerson(name);
                         }
+            SwingUtilities.updateComponentTreeUI(frame);
                 } //      Code from: https://stackoverflow.com/questions/8852560/how-to-make-popup-window-in-java
         );
         removePerson.addActionListener(evt -> {

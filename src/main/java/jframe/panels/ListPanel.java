@@ -34,7 +34,7 @@ public class ListPanel extends JPanel {
 
         this.setLayout(new BorderLayout());
         this.add(new JScrollPane(ticketJList),BorderLayout.CENTER);
-        this.add(new JScrollPane(personJList),BorderLayout.NORTH);
+        this.add(new JScrollPane(personJList),BorderLayout.WEST);
         this.add(new JScrollPane(billJlist),BorderLayout.SOUTH);
     }
 

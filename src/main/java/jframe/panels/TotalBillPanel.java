@@ -1,17 +1,21 @@
 package jframe.panels;
 
 import controller.RegisterController;
+import person.Person;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class TotalBillPanel extends JPanel {
     private JButton printBill;
     private RegisterController controller;
+    private ArrayList<String> listOutput;
 
     public TotalBillPanel(RegisterController controller, JFrame frame, ListPanel panel)
     {
         this.printBill = new JButton("Print Total Bill");
+        listOutput = new ArrayList<>();
         printBill.setBackground(Color.RED);
         this.controller = controller;
         printBill.setFont(new Font("Dialog", Font.PLAIN, 32));
@@ -20,6 +24,17 @@ public class TotalBillPanel extends JPanel {
             if(controller.getNames().length > 1)
             {
                 controller.printBill();
+                for(Person person: controller.getPeopleDB().getList())
+                {
+                    listOutput.clear();
+                    listOutput = person.printDebts();
+                    for(String string: listOutput)
+                    {
+                        panel.totalBill(string);
+                    }
+
+                }
+//                panel.totalBill();
             } else JOptionPane.showMessageDialog(frame,"There are not enough people yet!");
         });
 

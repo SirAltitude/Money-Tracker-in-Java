@@ -47,8 +47,6 @@ public class Main {
 
         // TESTING PURPOSES
 //      TODO
-//      fix remove person
-//      fix deleted person list
-//      fix other tickets
+//      fix totalbill output
     }
 }

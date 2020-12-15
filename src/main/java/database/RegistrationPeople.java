@@ -60,6 +60,20 @@ public class RegistrationPeople extends PeopleDB {
     @Override
     public void totalBill() {
         System.out.println("\n---- Total Bill -----");
+        calcDebts();
+        for(Person person: people)
+        {
+            System.out.println(person.printDebts());
+        }
+        for(Person person: deletedPeople)
+        {
+            person.printDebts();
+        }
+        billCalculated = false;
+    }
+
+    public void calcDebts()
+    {
         for(Person person: people)
         {
             for(Person p: people)
@@ -83,21 +97,7 @@ public class RegistrationPeople extends PeopleDB {
                     }
                 }
             }
-            billCalculated = true;
-            person.setBillPrint();
-            setChanged();
-            this.key = person;
-            this.notifyObservers();
         }
-        for(Person person: deletedPeople)
-        {
-            billCalculated = true;
-            person.setBillPrint();
-            setChanged();
-            this.key = person;
-            this.notifyObservers();
-        }
-        billCalculated = false;
     }
 
     public boolean isBillCalculated()

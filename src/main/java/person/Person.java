@@ -2,6 +2,7 @@ package person;
 
 import ticket.Ticket;
 
+import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,12 +17,14 @@ public class Person {
     private boolean deleted;
     private static DecimalFormat df = new DecimalFormat("0.00");
     private boolean timeForTotalBill = false;
+    private ArrayList<String> output ;
 
     public Person(String name)
     {
     this.name = name;
     tickets = new ArrayList<>();
     debts = new HashMap<>();
+    output = new ArrayList<>();
     debt = 0;
     deleted = false;
     }
@@ -35,21 +38,22 @@ public class Person {
     {
         return this.debts;
     }
-    public String printDebts()
+    public ArrayList<String> printDebts()
     {
-        String output = null;
+        output.clear();
         for(Map.Entry<Person, Double> entry: this.debts.entrySet())
         {
-            output = this.name + " owes "+entry.getKey().getName()+", "+df.format((entry.getValue()))+"euros.";
+            output.add(this.name + " owes "+entry.getKey().getName()+", "+df.format((entry.getValue()))+"eur.");
             // Formatting double: https://stackoverflow.com/questions/12806278/double-decimal-formatting-in-java
 
         }
         if(debts.size() == 0)
         {
-            output = this.name+" owes no-one!";
+            output.add(this.name+" owes no-one!");
         }
         return output;
     }
+
     public void addTicket(Ticket t)
     {
         tickets.add(t);
@@ -93,12 +97,8 @@ public class Person {
     public String toStringModified()
     {
         if(this.deleted)
-            return String.format("%s was removed from the trip.",this.name);
-        else if(timeForTotalBill) {
-            timeForTotalBill = false;
-            return printDebts();
-        }
-        else return String.format("%s was added to the trip.",this.name);
+            return this.name +" was removed from the trip.";
+        else return this.name+" was added to the trip.";
     }
 
     public void setDeleted()

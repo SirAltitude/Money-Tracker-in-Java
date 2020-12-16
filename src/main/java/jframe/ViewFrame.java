@@ -156,10 +156,17 @@ public class ViewFrame extends JFrame implements Observer {
         gbc.gridy = 0;
         pane.add(buttonTotalBill,gbc);
 
+        buttonGraph = new GraphPanel(register,frame);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.weightx = 0.5;
+        gbc.gridx = 4;
+        gbc.gridy = 0;
+        pane.add(buttonGraph,gbc);
+
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.ipady = 10;
         gbc.weightx = 0.0;
-        gbc.gridwidth = 4;
+        gbc.gridwidth = 5;
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.anchor = PAGE_END;
@@ -180,7 +187,7 @@ public class ViewFrame extends JFrame implements Observer {
         }else {
             frame.setIconImage(icon.getImage());
         }
-        frame.setPreferredSize(new Dimension(1100,650));
+        frame.setPreferredSize(new Dimension(1200,650));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         addComponentsToPane(frame.getContentPane());
@@ -202,6 +209,7 @@ public class ViewFrame extends JFrame implements Observer {
             }
             if(register.getTicketsDB().getList().size()>=1) {
                 buttonTotalBill.changeColor();
+                buttonGraph.changeColor();
                 updatedColor = true;
             }
         }

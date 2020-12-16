@@ -1,4 +1,5 @@
 package database;
+import org.omg.CORBA.PERSIST_STORE;
 import person.Person;
 
 
@@ -15,9 +16,11 @@ public abstract class PeopleDB extends Observable {
     public abstract Person getPerson(String name);
     public abstract boolean hasPerson(String name);
     public abstract ArrayList<Person> getList();
+    public abstract ArrayList<Person> getDeletedPeople();
 
     public abstract void printDatabase();
     public abstract double getGreatestDebt();
+    public abstract double getSmallestDebt();
     public abstract boolean isBillCalculated();
 
     public abstract void addObserver(Observer o);

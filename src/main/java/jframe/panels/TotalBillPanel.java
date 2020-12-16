@@ -21,7 +21,7 @@ public class TotalBillPanel extends JPanel {
         printBill.setFont(new Font("Dialog", Font.PLAIN, 32));
         printBill.revalidate();
         printBill.addActionListener(evt -> {
-            if(controller.getNames().length > 1)
+            if(controller.getTicketsDB().getList().size()>=1 )
             {
                 controller.printBill();
                 for(Person person: controller.getPeopleDB().getList())
@@ -33,6 +33,15 @@ public class TotalBillPanel extends JPanel {
                         panel.totalBill(string);
                     }
 
+                }
+                for(Person person: controller.getPeopleDB().getDeletedPeople())
+                {
+                    listOutput.clear();
+                    listOutput = person.printDebts();
+                    for (String string: listOutput)
+                    {
+                        panel.totalBill(string);
+                    }
                 }
 //                panel.totalBill();
             } else JOptionPane.showMessageDialog(frame,"There are not enough people yet!");

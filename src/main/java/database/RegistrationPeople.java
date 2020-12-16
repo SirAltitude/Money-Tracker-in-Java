@@ -38,6 +38,11 @@ public class RegistrationPeople extends PeopleDB {
     }
 
     @Override
+    public ArrayList<Person> getDeletedPeople()
+    {
+        return this.deletedPeople;
+    }
+    @Override
     public void addPerson(Person p) {
         this.people.add(p);
         notifiedPerson = p;
@@ -138,7 +143,22 @@ public class RegistrationPeople extends PeopleDB {
                 prevVal = newVal;
             }
         }
-        return newVal;
+        return prevVal;
+    }
+
+    @Override
+    public double getSmallestDebt()
+    {
+        double prevVal= 0,newVal=0;
+        for(Person person: people)
+        {
+            newVal = person.getTotalDebt();
+            if(newVal < prevVal || prevVal ==0)
+            {
+                prevVal = newVal;
+            }
+        }
+        return prevVal;
     }
     @Override
     public void printDatabase() {

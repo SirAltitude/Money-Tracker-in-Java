@@ -134,7 +134,7 @@ public class RegistrationPeople extends PeopleDB {
     @Override
     public double getGreatestDebt()
     {
-        double prevVal = 0, newVal = 0;
+        double prevVal = 0, newVal;
         for(Person person: people)
         {
             newVal = person.getTotalDebt();
@@ -149,13 +149,14 @@ public class RegistrationPeople extends PeopleDB {
     @Override
     public double getSmallestDebt()
     {
-        double prevVal= 0,newVal=0;
+        double prevVal= 0,newVal;
         for(Person person: people)
         {
             newVal = person.getTotalDebt();
             if(newVal < prevVal || prevVal ==0)
             {
                 prevVal = newVal;
+                System.out.println("Smaller: "+prevVal+" Bigger: "+newVal);
             }
         }
         return prevVal;

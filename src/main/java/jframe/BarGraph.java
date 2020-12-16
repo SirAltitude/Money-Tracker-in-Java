@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class BarGraph extends JPanel {
-    private Map<Color, Integer> bars = new LinkedHashMap<Color, Integer>();
+    private Map<Color, Integer> bars = new LinkedHashMap<>();
     private RegisterController controller;
 
     public BarGraph(RegisterController controller)
@@ -37,7 +37,9 @@ public class BarGraph extends JPanel {
     protected void paintComponent(Graphics g) {
         // determine longest bar
         int max = Integer.MIN_VALUE;
-        max = Math.max(max,(int)(controller.getPeopleDB().getGreatestDebt()/controller.getPeopleDB().getSmallestDebt()));
+        double maxVal = controller.getPeopleDB().getGreatestDebt();
+        double minVal = controller.getPeopleDB().getSmallestDebt();
+        max = Math.max(max,(int)(maxVal-minVal));
         System.out.println(max);
 
         // paint bars

@@ -23,6 +23,7 @@ public class TotalBillPanel extends JPanel {
         printBill.addActionListener(evt -> {
             if(controller.getTicketsDB().getList().size()>=1 )
             {
+                panel.getTotalBillJList().clear();
                 controller.printBill();
                 for(Person person: controller.getPeopleDB().getList())
                 {

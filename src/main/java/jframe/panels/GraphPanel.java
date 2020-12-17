@@ -33,7 +33,7 @@ public class GraphPanel extends JPanel {
     {
         JFrame f = new JFrame();
         f.setSize(400,300);
-        double[] values = new double[(controller.getPeopleDB().getList().size())];
+        double[] values = new double[(controller.getPeopleDB().getList().size())+(controller.getPeopleDB().getDeletedPeople().size())];
         String[] names = new String[values.length];
         int i=0;
         for(Person person: controller.getPeopleDB().getList())
@@ -42,7 +42,13 @@ public class GraphPanel extends JPanel {
             names[i] = person.getName()+": "+person.getTotalDebt()+"eur";
             i++;
         }
-        f.getContentPane().add(new ChartPanel(values,names,"Bar Chart"));
+        for(Person person: controller.getPeopleDB().getDeletedPeople())
+        {
+            values[i] = person.getTotalDebt();
+            names[i] = person.getName()+": "+person.getTotalDebt()+"eur";
+            i++;
+        }
+        f.getContentPane().add(new ChartPanel(values,names,"Total Debt Graph"));
         f.setVisible(true);
     }
 }

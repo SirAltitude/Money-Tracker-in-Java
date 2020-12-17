@@ -105,11 +105,6 @@ public class RegistrationPeople extends PeopleDB {
         }
     }
 
-    public boolean isBillCalculated()
-    {
-        return billCalculated;
-    }
-
     @Override
     public Person getPerson(String name) {
         for(Person p: people)
@@ -131,36 +126,7 @@ public class RegistrationPeople extends PeopleDB {
         }
         return false;
     }
-    @Override
-    public double getGreatestDebt()
-    {
-        double prevVal = 0, newVal;
-        for(Person person: people)
-        {
-            newVal = person.getTotalDebt();
-            if(newVal > prevVal)
-            {
-                prevVal = newVal;
-            }
-        }
-        return prevVal;
-    }
 
-    @Override
-    public double getSmallestDebt()
-    {
-        double prevVal= 0,newVal;
-        for(Person person: people)
-        {
-            newVal = person.getTotalDebt();
-            if(newVal < prevVal || prevVal ==0)
-            {
-                prevVal = newVal;
-                System.out.println("Smaller: "+prevVal+" Bigger: "+newVal);
-            }
-        }
-        return prevVal;
-    }
     @Override
     public void printDatabase() {
         System.out.println("\n---- People on this trip ----");
@@ -182,9 +148,8 @@ public class RegistrationPeople extends PeopleDB {
 
     @Override
     public void notifyObservers() {
-        for(Observer obs: observers) {
+        for (Observer obs : observers) {
             obs.update(this, this.notifiedPerson);
         }
     }
-
 }

@@ -8,7 +8,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 public abstract class TicketsDB extends Observable {
-    public TicketsDB(){}
     public abstract void addTicket(Ticket t);
     public abstract void printDatabase();
 

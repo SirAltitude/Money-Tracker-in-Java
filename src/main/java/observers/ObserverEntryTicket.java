@@ -6,7 +6,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class ObserverEntryTicket implements Observer {
-    public ObserverEntryTicket(){}
 
     @Override
     public void update(Observable o, Object arg) {

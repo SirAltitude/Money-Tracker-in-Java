@@ -44,9 +44,5 @@ public class Main {
         peopleDB.addObserver(view);
         ticketsDB.addObserver(view);
         view.createAndShowGUI();
-
-        // TESTING PURPOSES
-//      TODO
-//      fix totalbill output
     }
 }

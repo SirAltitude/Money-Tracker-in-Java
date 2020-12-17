@@ -49,5 +49,9 @@ public class ListPanel extends JPanel {
     public void totalBill(String name) {
             this.billListModel.addElement(name);
     }
+    public DefaultListModel getTotalBillJList()
+    {
+        return this.billListModel;
+    }
 }
 

@@ -13,10 +13,8 @@ public class Person {
     private String name;
     private ArrayList<Ticket> tickets;
     private HashMap<Person, Double> debts;
-    private double debt;
     private boolean deleted;
     private static DecimalFormat df = new DecimalFormat("0.00");
-    private boolean timeForTotalBill = false;
     private ArrayList<String> output ;
 
     public Person(String name)
@@ -25,7 +23,6 @@ public class Person {
     tickets = new ArrayList<>();
     debts = new HashMap<>();
     output = new ArrayList<>();
-    debt = 0;
     deleted = false;
     }
 
@@ -59,12 +56,6 @@ public class Person {
         tickets.add(t);
     }
 
-    public void printTickets(){
-        for(Ticket ticket: tickets)
-        {
-            System.out.println(ticket.getTicketType() + ", value: "+ticket.getPaidAmount());
-        }
-    }
     public void addDebt(Person person,double value) {
         double previousval;
         double newval;
@@ -90,10 +81,6 @@ public class Person {
         debts.put(person,value);
     }
 
-    public HashMap<Person, Double> getDebt()
-    {
-        return debts;
-    }
     public String toStringModified()
     {
         if(this.deleted)
@@ -108,10 +95,5 @@ public class Person {
     public boolean getDeleted()
     {
         return deleted;
-    }
-
-    public void setBillPrint()
-    {
-        timeForTotalBill = true;
     }
 }

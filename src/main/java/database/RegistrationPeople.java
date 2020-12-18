@@ -1,4 +1,6 @@
 package database;
+import iterator.Container;
+import iterator.Iterator;
 import person.Person;
 
 import java.lang.reflect.Array;
@@ -6,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observer;
 
-public class RegistrationPeople extends PeopleDB {
+public class RegistrationPeople extends PeopleDB implements Container {
 
     private final ArrayList<Person> people;
     private final ArrayList<Person> deletedPeople;
@@ -150,6 +152,32 @@ public class RegistrationPeople extends PeopleDB {
     public void notifyObservers() {
         for (Observer obs : observers) {
             obs.update(this, this.notifiedPerson);
+        }
+    }
+
+    @Override
+    public Iterator getIterator() {
+        return null;
+    }
+
+    private class PeopleIterator implements Iterator{
+        int index;
+
+        @Override
+        public boolean hasNext() {
+            if(index < people.size()) {
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public Object next() {
+            if(this.hasNext())
+            {
+                //return people[index++];
+            }
+            return null;
         }
     }
 }

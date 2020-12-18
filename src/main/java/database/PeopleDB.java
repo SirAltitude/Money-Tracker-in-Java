@@ -15,14 +15,9 @@ public abstract class PeopleDB extends Observable {
     public abstract boolean hasPerson(String name);
     public abstract ArrayList<Person> getList();
     public abstract ArrayList<Person> getDeletedPeople();
-
     public abstract void printDatabase();
-
     public abstract void addObserver(Observer o);
-
     public abstract void deleteObserver(Observer o);
-
     public abstract void notifyObservers();
-
 }
 

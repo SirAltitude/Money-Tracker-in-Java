@@ -9,7 +9,7 @@ public class Ticket_Sports extends Ticket {
     {
         super.paidAmount = paidAmount;
         super.person = person;
-        super.splitEvenly = split;
+        super.split = split;
     }
 
     @Override

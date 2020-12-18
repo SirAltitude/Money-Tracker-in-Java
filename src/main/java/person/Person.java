@@ -31,6 +31,10 @@ public class Person {
         return name;
     }
 
+    public void setName(String newName)
+    {
+        this.name = newName;
+    }
     public HashMap<Person, Double> getDebts()
     {
         return this.debts;

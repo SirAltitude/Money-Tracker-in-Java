@@ -79,6 +79,7 @@ public class RegistrationPeople extends PeopleDB implements Container {
         billCalculated = false;
     }
 
+    @Override
     public void calcDebts()
     {
         for(Person person: people)
@@ -165,18 +166,12 @@ public class RegistrationPeople extends PeopleDB implements Container {
 
         @Override
         public boolean hasNext() {
-            if(index < people.size()) {
-                return true;
-            }
-            return false;
+            return index < people.size();
         }
 
         @Override
         public Object next() {
-            if(this.hasNext())
-            {
-                //return people[index++];
-            }
+            this.hasNext();//return people[index++];
             return null;
         }
     }

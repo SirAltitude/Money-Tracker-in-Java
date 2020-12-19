@@ -4,10 +4,7 @@ import ticket.Ticket;
 
 import java.lang.reflect.Array;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 public class Person {
     private String name;
@@ -42,17 +39,32 @@ public class Person {
     public ArrayList<String> printDebts()
     {
         output.clear();
-        for(Map.Entry<Person, Double> entry: this.debts.entrySet())
+        Set entrySet = debts.entrySet();
+        Iterator it = entrySet.iterator();
+        while(it.hasNext())
         {
-            output.add(this.name + " owes "+entry.getKey().getName()+", "+df.format((entry.getValue()))+"eur.");
+            Map.Entry<Person, Double> mapEntry = (Map.Entry<Person, Double>)it.next();
+            output.add(this.name+" owes "+mapEntry.getKey().getName()+", "+df.format((mapEntry.getValue()))+"eur.");
             // Formatting double: https://stackoverflow.com/questions/12806278/double-decimal-formatting-in-java
-
         }
         if(debts.size() == 0)
         {
             output.add(this.name+" owes no-one!");
         }
         return output;
+
+
+//        for(Map.Entry<Person, Double> entry: this.debts.entrySet())
+//        {
+//            output.add(this.name + " owes "+entry.getKey().getName()+", "+df.format((entry.getValue()))+"eur.");
+//            // Formatting double: https://stackoverflow.com/questions/12806278/double-decimal-formatting-in-java
+//
+//        }
+//        if(debts.size() == 0)
+//        {
+//            output.add(this.name+" owes no-one!");
+//        }
+//        return output;
     }
 
     public void addTicket(Ticket t)

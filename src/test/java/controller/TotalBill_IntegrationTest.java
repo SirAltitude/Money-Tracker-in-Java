@@ -33,9 +33,9 @@ public class TotalBill_IntegrationTest {
         peopleDB.addPerson(eli);
         peopleDB.addPerson(rob);
 
-        controller.addTicket(controller.getFactory().makeTicket(1, eli, 15.0, true));
-        controller.addTicket(controller.getFactory().makeTicket(2, anton, 12.0, true));
-        controller.addTicket(controller.getFactory().makeTicket(3, rob, 9.0, true));
+        controller.addTicket(controller.getFactory().makeTicket("Sports", eli, 15.0, true));
+        controller.addTicket(controller.getFactory().makeTicket("Restaurant", anton, 12.0, true));
+        controller.addTicket(controller.getFactory().makeTicket("Cinema", rob, 9.0, true));
 
         controller.getPeopleDB().calcDebts();
     }

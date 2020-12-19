@@ -15,7 +15,6 @@ public abstract class Ticket {
     {
         return paidAmount;
     }
-    public abstract String getTicketType();
     public String toString()
     {
         return String.format("%s paid ''%s'', %seur",this.getPayer().getName(),this.getTicketType(),this.getPaidAmount());
@@ -24,4 +23,5 @@ public abstract class Ticket {
         return split;
     }
 
+    public abstract String getTicketType();
 }

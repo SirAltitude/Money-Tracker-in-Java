@@ -1,14 +1,12 @@
 package database;
-import iterator.Container;
-import iterator.Iterator;
 import person.Person;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Observer;
 
-public class RegistrationPeople extends PeopleDB implements Container {
+public class RegistrationPeople extends PeopleDB{
 
     private final ArrayList<Person> people;
     private final ArrayList<Person> deletedPeople;
@@ -68,13 +66,16 @@ public class RegistrationPeople extends PeopleDB implements Container {
     public void totalBill() {
         System.out.println("\n---- Total Bill -----");
         calcDebts();
-        for(Person person: people)
+
+        java.util.Iterator<Person> it = people.iterator();
+        while(it.hasNext())
         {
-            System.out.println(person.printDebts());
+            System.out.println(it.next().printDebts());
         }
-        for(Person person: deletedPeople)
+        it = deletedPeople.iterator();
+        while(it.hasNext())
         {
-            person.printDebts();
+            System.out.println(it.next().printDebts());
         }
         billCalculated = false;
     }
@@ -82,10 +83,15 @@ public class RegistrationPeople extends PeopleDB implements Container {
     @Override
     public void calcDebts()
     {
-        for(Person person: people)
+        java.util.Iterator<Person> it = people.iterator();
+
+        while(it.hasNext())
         {
-            for(Person p: people)
+            Person person = it.next();
+            java.util.Iterator<Person> it2 = people.iterator();
+            while(it2.hasNext())
             {
+                Person p = it2.next();
                 if(!p.getName().equals(person.getName()))
                 {
                     if(p.getDebts().containsKey(person) && person.getDebts().containsKey(p))
@@ -106,12 +112,40 @@ public class RegistrationPeople extends PeopleDB implements Container {
                 }
             }
         }
+
+
+
+//        for(Person person: people)
+//        {
+//            for(Person p: people)
+//            {
+//                if(!p.getName().equals(person.getName()))
+//                {
+//                    if(p.getDebts().containsKey(person) && person.getDebts().containsKey(p))
+//                    {
+//                        if(p.getDebts().get(person) >= person.getDebts().get(p))
+//                        {
+//                            double finalval = (p.getDebts().get(person) - person.getDebts().get(p));
+//                            p.setDebtFinal(person,finalval);
+//                            person.getDebts().remove(p);
+//                        }
+//                        else if (p.getDebts().get(person) <= person.getDebts().get(p))
+//                        {
+//                            double finalval = (person.getDebts().get(p) - p.getDebts().get(person));
+//                            person.setDebtFinal(p,finalval);
+//                            p.getDebts().remove(person);
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
 
     @Override
-    public Person getPerson(String name) {
-        for(Person p: people)
+    public Person getPerson(String name) { java.util.Iterator<Person> it = people.iterator();
+        while(it.hasNext())
         {
+            Person p = it.next();
             if(p.getName().equals(name))
                 return p;
         }
@@ -120,12 +154,11 @@ public class RegistrationPeople extends PeopleDB implements Container {
 
     @Override
     public boolean hasPerson(String name) {
-        for(Person person: people)
+        java.util.Iterator<Person> it = people.iterator();
+        while(it.hasNext())
         {
-            if(person.getName().equals(name))
-            {
-                return true;
-            }
+            if(it.next().getName().equals(name))
+            return true;
         }
         return false;
     }
@@ -133,9 +166,10 @@ public class RegistrationPeople extends PeopleDB implements Container {
     @Override
     public void printDatabase() {
         System.out.println("\n---- People on this trip ----");
-        for(Person p: people)
+        java.util.Iterator<Person> it = people.iterator();
+        while(it.hasNext())
         {
-            System.out.println(p.getName());
+            System.out.println(it.next().getName());
         }
     }
 
@@ -151,28 +185,10 @@ public class RegistrationPeople extends PeopleDB implements Container {
 
     @Override
     public void notifyObservers() {
-        for (Observer obs : observers) {
-            obs.update(this, this.notifiedPerson);
-        }
-    }
-
-    @Override
-    public Iterator getIterator() {
-        return null;
-    }
-
-    private class PeopleIterator implements Iterator{
-        int index;
-
-        @Override
-        public boolean hasNext() {
-            return index < people.size();
-        }
-
-        @Override
-        public Object next() {
-            this.hasNext();//return people[index++];
-            return null;
+        ListIterator<Observer> it = observers.listIterator();
+        while(it.hasNext())
+        {
+            it.next().update(this,this.notifiedPerson);
         }
     }
 }

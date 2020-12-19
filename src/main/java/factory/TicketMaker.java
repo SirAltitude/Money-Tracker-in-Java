@@ -5,7 +5,6 @@ import database.RegistrationPeople;
 import person.Person;
 import ticket.*;
 
-import java.util.Scanner;
 
 public class TicketMaker extends AFact{
     private static TicketMaker registrationTicketMaker_instance;
@@ -19,13 +18,15 @@ public class TicketMaker extends AFact{
     }
 
     @Override
-    public Ticket makeTicket(int type, Person p, double paidamount, boolean split) {
+    public Ticket makeTicket(String type, Person p, double paidamount, boolean split) {
         PeopleDB db = RegistrationPeople.getInstance();
         int peopleAmount = db.getList().size();
         if(split)
         {
-            for(Person person: db.getList())
+            java.util.Iterator<Person> it = db.getList().iterator();
+            while(it.hasNext())
             {
+                Person person = it.next();
                 if(!person.getName().equals(p.getName())) {
                     person.addDebt(p,paidamount/peopleAmount);
                 }
@@ -33,13 +34,13 @@ public class TicketMaker extends AFact{
         }
         switch(type)
         {
-            case 1:
+            case "Restaurant":
                 return new Ticket_Restaurant(p,paidamount,split);
-            case 2:
+            case "Sports":
                 return new Ticket_Sports(p,paidamount,split);
-            case 3:
+            case "Cinema":
                 return new Ticket_Cinema(p,paidamount,split);
-            case 4:
+            case "Transport":
                 return new Ticket_Transport(p,paidamount,split);
         }
         return null;

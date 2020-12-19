@@ -1,10 +1,8 @@
 package database;
+import person.Person;
 import ticket.Ticket;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Observer;
+import java.util.*;
 
 public class RegistrationTickets extends TicketsDB {
 
@@ -38,10 +36,12 @@ public class RegistrationTickets extends TicketsDB {
     public void printDatabase()
     {
         System.out.println("\n---- Active Tickets -----");
+        java.util.Iterator<Ticket> it = tickets.iterator();
         if(tickets.size()!=0) {
-            for (Ticket t : tickets) {
+            while(it.hasNext())
+            {
+                Ticket t = it.next();
                 System.out.println(t.getTicketType() + ", " + t.getPaidAmount()+"eur" + " was paid by " +t.getPayer().getName() + ". Even split? " + t.getSplit());
-
             }
         }else System.out.println("There are no tickets");
     }
@@ -58,8 +58,10 @@ public class RegistrationTickets extends TicketsDB {
 
     @Override
     public void notifyObservers() {
-        for(Observer obs: observers) {
-            obs.update(this, key);
+        ListIterator<Observer> it = observers.listIterator();
+        while(it.hasNext())
+        {
+            it.next().update(this,key);
         }
     }
 

@@ -39,22 +39,6 @@ public class TicketPanel extends JPanel {
                         break;
                     }
                     chosenTicketType = String.valueOf(temp);
-                    if (!chosenTicketType.isEmpty()) {
-                        switch (chosenTicketType) {
-                            case "Restaurant":
-                                EventType = 1;
-                                break;
-                            case "Sports":
-                                EventType = 2;
-                                break;
-                            case "Cinema":
-                                EventType = 3;
-                                break;
-                            case "Transport":
-                                EventType = 4;
-                                break;
-                        }
-                    }
                     temp = JOptionPane.showInputDialog(frame, "Who paid?", "New Ticket Parameters", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                     if(temp == null)
                     {
@@ -125,7 +109,7 @@ public class TicketPanel extends JPanel {
                         }
                     }
                     if (!payingPerson.getName().isEmpty() && !chosenTicketType.isEmpty() && canCreateTicket && !cancel) {
-                        t = controller.getFactory().makeTicket(EventType, payingPerson, paidAmount, isSplit);
+                        t = controller.getFactory().makeTicket(chosenTicketType, payingPerson, paidAmount, isSplit);
                         if (t != null) {
                             controller.addTicket(t);
                             cancel = true;

@@ -5,6 +5,6 @@ import ticket.Ticket;
 
 public abstract class AFact {
 
-    public abstract Ticket makeTicket(int type, Person p, double paidAmount, boolean split); // cinematicket, bowlingticket, ...
+    public abstract Ticket makeTicket(String type, Person p, double paidAmount, boolean split); // cinematicket, bowlingticket, ...
 
 }

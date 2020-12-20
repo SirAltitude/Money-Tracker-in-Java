@@ -84,7 +84,6 @@ public class RegistrationPeople extends PeopleDB{
     public void calcDebts()
     {
         java.util.Iterator<Person> it = people.iterator();
-
         while(it.hasNext())
         {
             Person person = it.next();
@@ -112,33 +111,6 @@ public class RegistrationPeople extends PeopleDB{
                 }
             }
         }
-
-
-
-//        for(Person person: people)
-//        {
-//            for(Person p: people)
-//            {
-//                if(!p.getName().equals(person.getName()))
-//                {
-//                    if(p.getDebts().containsKey(person) && person.getDebts().containsKey(p))
-//                    {
-//                        if(p.getDebts().get(person) >= person.getDebts().get(p))
-//                        {
-//                            double finalval = (p.getDebts().get(person) - person.getDebts().get(p));
-//                            p.setDebtFinal(person,finalval);
-//                            person.getDebts().remove(p);
-//                        }
-//                        else if (p.getDebts().get(person) <= person.getDebts().get(p))
-//                        {
-//                            double finalval = (person.getDebts().get(p) - p.getDebts().get(person));
-//                            person.setDebtFinal(p,finalval);
-//                            p.getDebts().remove(person);
-//                        }
-//                    }
-//                }
-//            }
-//        }
     }
 
     @Override

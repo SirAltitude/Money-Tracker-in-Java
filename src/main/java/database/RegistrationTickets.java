@@ -7,7 +7,7 @@ import java.util.*;
 public class RegistrationTickets extends TicketsDB {
 
     private final ArrayList<Ticket> tickets;
-    private static RegistrationTickets registrationTicket_instance;
+    private volatile static RegistrationTickets registrationTicket_instance;
     private List<Observer> observers;
     private Ticket key;
     private RegistrationTickets()
@@ -19,10 +19,14 @@ public class RegistrationTickets extends TicketsDB {
     public static RegistrationTickets getInstance()
     {
         if(registrationTicket_instance == null) {
-            registrationTicket_instance = new RegistrationTickets();
+            synchronized (RegistrationTickets.class) {
+                if (registrationTicket_instance == null)
+                    registrationTicket_instance = new RegistrationTickets();
+            }
         }
         return registrationTicket_instance;
     }
+    // Source: Head First Design Patterns page 182
 
     @Override
     public void addTicket(Ticket t) {

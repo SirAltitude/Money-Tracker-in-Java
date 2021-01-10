@@ -1,14 +1,10 @@
 package controller;
 
-import database.RegistrationPeople;
 import factory.AFact;
 import database.PeopleDB;
 import database.TicketsDB;
 import person.Person;
 import ticket.Ticket;
-
-import java.awt.geom.AffineTransform;
-import java.util.Arrays;
 
 public class RegisterController {
 

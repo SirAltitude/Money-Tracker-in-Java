@@ -1,4 +1,5 @@
 package database;
+import controller.RegisterController;
 import person.Person;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ public class RegistrationPeople extends PeopleDB{
 
     private final ArrayList<Person> people;
     private final ArrayList<Person> deletedPeople;
-    private static RegistrationPeople registrationPeople_instance;
+    private volatile static RegistrationPeople registrationPeople_instance;
     private List<Observer> observers;
     private Person key;
     private Person notifiedPerson;
@@ -26,10 +27,14 @@ public class RegistrationPeople extends PeopleDB{
     public static RegistrationPeople getInstance()
     {
         if(registrationPeople_instance == null) {
-            registrationPeople_instance = new RegistrationPeople();
+            synchronized (RegistrationPeople.class) {
+                if (registrationPeople_instance == null)
+                    registrationPeople_instance = new RegistrationPeople();
+            }
         }
         return registrationPeople_instance;
     }
+    // Source: Head First Design Patterns page 182
 
     @Override
     public ArrayList<Person> getList()
@@ -79,7 +84,6 @@ public class RegistrationPeople extends PeopleDB{
         }
         billCalculated = false;
     }
-
     @Override
     public void calcDebts()
     {

@@ -14,6 +14,7 @@ public class PeopleRegPanel extends JPanel {
     private Person toBeRemoved;
     private String[] options;
     private RegisterController controller;
+    boolean correctInput = false;
 
 
     public PeopleRegPanel(RegisterController controller, JFrame frame) {
@@ -33,15 +34,33 @@ public class PeopleRegPanel extends JPanel {
 
         this.controller = controller;
 
+
         addPerson.addActionListener(evt -> {
             if(controller.getPeopleDB().getList().size()<=4) {
                 name = JOptionPane.showInputDialog(frame, "What is the person's name?", null);
-                if (!(name == null) && !name.isEmpty())
+                if (!(name == null) && !name.isEmpty()) {
+                    char[] chars = name.toCharArray();
+                    StringBuilder sb = new StringBuilder();
+                    for(char c: chars)
+                    {
+                        if(Character.isDigit(c))
+                        {
+                            JOptionPane.showMessageDialog(frame, "Error: incorrect input");
+                            correctInput = false;
+                            break;
+                            // Source: https://bit.ly/3q1RHUE
+                        }
+                        else
+                        {
+                            correctInput = true;
+                        }
+                    }
                     if (controller.getPeopleDB().hasPerson(name)) {
                         JOptionPane.showMessageDialog(frame, "This person has already been added!");
-                    } else {
+                    } else if(correctInput) {
                         controller.addPerson(name);
                     }
+                }
             } else JOptionPane.showMessageDialog(frame,"Maximum number of people reached!");
             SwingUtilities.updateComponentTreeUI(frame);
                 } //      Code from: https://stackoverflow.com/questions/8852560/how-to-make-popup-window-in-java

@@ -7,15 +7,19 @@ import ticket.*;
 
 
 public class TicketMaker extends AFact{
-    private static TicketMaker registrationTicketMaker_instance;
+    private volatile static TicketMaker registrationTicketMaker_instance;
 
     public static TicketMaker getInstance()
     {
         if(registrationTicketMaker_instance == null) {
-            registrationTicketMaker_instance = new TicketMaker();
+            synchronized (TicketMaker.class) {
+                if (registrationTicketMaker_instance == null)
+                    registrationTicketMaker_instance = new TicketMaker();
+            }
         }
         return registrationTicketMaker_instance;
     }
+    
 
     @Override
     public Ticket makeTicket(String type, Person p, double paidamount, boolean split) {
